@@ -1,0 +1,16 @@
+{
+    "name": "Pocket",
+    "description": "A Segmented theme for Spicetify",
+    "preview": "https://raw.githubusercontent.com/LucyUwI/Pocket/main/PinkPreview.png",
+    "readme": "README.md",
+    "usercss": "Pocket-Spotify/user.css",
+    "schemes": "Pocket-Spotify/color.ini",
+    "include": ["https://raw.githubusercontent.com/LucyUwI/Pocket/main/VolumeBeforeHover.js"],
+    "branch": "main",
+    "authors": [
+        {
+            "name": "LucyUwI",
+            "url": "https://github.com/LucyUwi"
+        }
+    ]
+}
