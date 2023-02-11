@@ -1,6 +1,6 @@
 # Pocket-Spotify
 A Segmented theme for Spicetify <3
-![](/PinkPreview.png)
+![](/Preview.gif)
 
 #### Applying
 ##### Available on the marketplace
