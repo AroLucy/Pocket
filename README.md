@@ -24,8 +24,9 @@ spicetify apply
 ### Pocket Extention (Recomended)
 ![](/HoverPreview.gif)
 ### Windows Addons
-![](/WindowsControls.png)
 ![](/ThreeDots.png)
+![](/WindowsControls.png)
+
 ```bash
 mv VolumeBeforeHover.js ~/.config/spicetify/Extensions
 spicetify config extensions Pocket.js
