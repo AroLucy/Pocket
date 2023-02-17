@@ -21,5 +21,14 @@ setInterval(() => {
     );
   });
 }, 2000);
-if (navigator.userAgent.indexOf("Win") != -1)
+if (navigator.userAgent.indexOf("Win") != -1) {
   document.documentElement.style.setProperty("--display", "block");
+  document.documentElement.style.setProperty("--controls-display", "block");
+  document.documentElement.style.setProperty("--pfppadding", "120px");
+}
+if (navigator.userAgent.indexOf("Mac") != -1) {
+  document.documentElement.style.setProperty("--display", "block");
+  document.documentElement.style.setProperty("--left-back", "68px");
+  document.documentElement.style.setProperty("--top", "14px");
+  document.documentElement.style.setProperty("--left", "11px");
+}
