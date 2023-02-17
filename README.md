@@ -21,16 +21,19 @@ spicetify config current_theme Pocket-Spotify
 spicetify config color_scheme [Pink/Blue/Red/Green/Yellow/Purple]
 spicetify apply
 ```
-### Volume Hover Extentiuon (Recomended)
+### Pocket Extention (Recomended)
 ![](/HoverPreview.gif)
+### Windows Addons
+![](/WindowsControl.png)
+![](/ThreeDots.png)
 ```bash
 mv VolumeBeforeHover.js ~/.config/spicetify/Extensions
-spicetify config extensions VolumeBeforeHover.js
+spicetify config extensions Pocket.js
 spicetify apply
 ```
 ##### Windows
 ```powershell
 Move-Item .\VolumeBeforeHover.js ~\AppData\Local\spicetify\Extensions\
-spicetify config extensions VolumeBeforeHover.js
+spicetify config extensions Pocket.js
 spicetify apply
 ```
