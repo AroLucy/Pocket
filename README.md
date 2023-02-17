@@ -37,13 +37,13 @@ spicetify apply
 
 ![](/ControlsMac.png)
 ```bash
-mv VolumeBeforeHover.js ~/.config/spicetify/Extensions
+mv Pocket.js ~/.config/spicetify/Extensions
 spicetify config extensions Pocket.js
 spicetify apply
 ```
 ##### Windows
 ```powershell
-Move-Item .\VolumeBeforeHover.js ~\AppData\Local\spicetify\Extensions\
+Move-Item .\Pocket.js ~\AppData\Local\spicetify\Extensions\
 spicetify config extensions Pocket.js
 spicetify apply
 ```
