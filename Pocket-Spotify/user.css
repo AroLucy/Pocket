@@ -569,3 +569,6 @@ button[aria-label="Friend Activity"] {
 .Root__top-bar {
   width: 96%;
 }
+.playlist-item__img.folder {
+    background: transparent;
+}
