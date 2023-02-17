@@ -519,19 +519,19 @@ figure.main-avatar-avatar > div > img {
   border-radius: 1em;
 }
 .main-topBar-sectionWrapper.main-topBar-right {
-  padding-inline-end: 120px !important;
+  padding-inline-end: var(--pfppadding) !important;
 }
-:root {--display: none}
+:root {--display: none; --controls-display: none; --left-back:40px; --pfppadding: 10px; --top: 10px; --left: 13px;}
 .Root__fixed-top-bar::before {
   content: "";
   position: absolute;
   background: #141414;
   height: 30px;
-  width: 40px;
+  width: var(--left-back);
   border-radius: 1em;
   border: 3px solid #202020;
-  top: 10px;
-  left: 13px;
+  top: var(--top);
+  left: var(--left);
   display: var(--display);
 }
 /* CDontrols border
@@ -555,9 +555,17 @@ figure.main-avatar-avatar > div > img {
   top: 1px;
   right: 1px;
   background: linear-gradient(45deg, rgba(69,69,69,1) 0%, rgba(69,69,69,1) 9%, rgba(43,43,43,1) 9%, rgba(43,43,43,1) 100%);
-  display: var(--display);
+  display: var(--controls-display);
 }
 
 button[aria-label="Friend Activity"] {
   display: none !important;
+}
+.Root__top-bar, .Root__top-bar * {
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+}
+
+.Root__top-bar {
+  width: 96%;
 }
