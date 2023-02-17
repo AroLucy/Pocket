@@ -4,6 +4,8 @@ A Segmented theme for Spicetify <3
 
 ![](/NewTitle.png)
 
+![](/TitleMac.png)
+
 #### Applying
 ##### Available on the marketplace
 ```bash
@@ -30,7 +32,10 @@ spicetify apply
 
 ![](/ThreeDots.png)
 ![](/WindowsControls.png)
+### MacOS Addons 
+<sup>Requires New Home Structure and Navigation Experement</sup>
 
+![](/ControlsMac.png)
 ```bash
 mv VolumeBeforeHover.js ~/.config/spicetify/Extensions
 spicetify config extensions Pocket.js
