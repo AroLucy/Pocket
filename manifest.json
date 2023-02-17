@@ -5,7 +5,7 @@
     "readme": "README.md",
     "usercss": "Pocket-Spotify/user.css",
     "schemes": "Pocket-Spotify/color.ini",
-    "include": ["https://raw.githubusercontent.com/LucyUwI/Pocket/main/VolumeBeforeHover.js"],
+    "include": ["https://raw.githubusercontent.com/LucyUwI/Pocket/main/Pocket.js"],
     "branch": "main",
     "authors": [
         {
