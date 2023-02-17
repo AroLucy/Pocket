@@ -2,6 +2,8 @@
 A Segmented theme for Spicetify <3
 ![](/Preview.gif)
 
+![](/NewTitle.png)
+
 #### Applying
 ##### Available on the marketplace
 ```bash
@@ -24,6 +26,8 @@ spicetify apply
 ### Pocket Extention (Recomended)
 ![](/HoverPreview.gif)
 ### Windows Addons
+<sup>Requires New Home Structure and Navigation Experement</sup>
+
 ![](/ThreeDots.png)
 ![](/WindowsControls.png)
 
