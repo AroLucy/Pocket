@@ -18,12 +18,7 @@ spicetify apply
 ```
 ##### Windows
 ```powershell
-git clone https://github.com/LucyUwI/Pocket-Spotify
-cd Spicetify-Sidebar-Controls
-Move-Item .\Pocket-Spotify\ ~\AppData\Local\spicetify\Themes\
-spicetify config current_theme Pocket-Spotify
-spicetify config color_scheme [Pink/Blue/Red/Green/Yellow/Purple]
-spicetify apply
+Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/LucyUwi/Pocket/main/install.ps1" | Invoke-Expression
 ```
 ### Pocket Extention (Recomended)
 ![](/HoverPreview.gif)
