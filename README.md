@@ -9,12 +9,7 @@ A Segmented theme for Spicetify <3
 #### Applying
 ##### Available on the marketplace
 ```bash
-git clone https://github.com/LucyUwI/Pocket-Spotify
-cd Spicetify-Sidebar-Controls
-mv Pocket-Spotify ~/.config/spicetify/Themes
-spicetify config current_theme Pocket-Spotify
-spicetify config color_scheme [Pink/Blue/Red/Green/Yellow/Purple]
-spicetify apply
+curl -fsSL "https://raw.githubusercontent.com/LucyUwi/Pocket/main/install.sh" | sh
 ```
 ##### Windows
 ```powershell
