@@ -32,3 +32,5 @@ if (navigator.userAgent.indexOf("Mac") != -1) {
   document.documentElement.style.setProperty("--top", "14px");
   document.documentElement.style.setProperty("--left", "11px");
 }
+
+console.log("%c❀ Pocket","font-size:5em; color:#faa;","Made with <3 by LucyUwi")
