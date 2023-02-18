@@ -463,10 +463,6 @@ button.main-playPauseButton-button {
 .Root__top-container--right-sidebar-visible {
   grid-template-areas: "top-bar top-bar top-bar" "nav-bar main-view right-sidebar" "now-playing-bar main-view right-sidebar";
 }
-nav.Root__nav-bar,
-ul#spicetify-sticky-list {
-  margin-top: 0;
-}
 .Root__fixed-top-bar {
   background: var(--spice-secondary);
   margin: 1em 1em 0;
@@ -579,4 +575,7 @@ button[aria-label="Friend Activity"] {
 .encore-dark-theme,
 .encore-dark-theme .encore-base-set {
   --text-subdued: var(--spice-subtext) !important;
+}
+.main-navBar-navBar {
+  padding-top: 0;
 }
