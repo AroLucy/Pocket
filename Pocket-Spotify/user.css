@@ -2,7 +2,15 @@
 .Root__top-container,
 aside.main-buddyFeed-container.Root__right-sidebar,
 nav.Root__nav-bar {
-  background: #141414;
+  background: var(--spice-main);
+}
+.main-card-card,
+.main-entityHeader-headerText,
+.main-rootlist-rootlist,
+.playlist-playlist-playlistContent,
+footer.main-nowPlayingBar-container,
+ul#spicetify-sticky-list {
+  background: var(--spice-secondary);
 }
 .Root__top-container {
   grid-template-areas: "nav-bar main-view" "nav-bar main-view" "now-playing-bar main-view";
@@ -37,12 +45,16 @@ footer.main-nowPlayingBar-container {
 .GlueDropTarget.GlueDropTarget--albums.GlueDropTarget--tracks.GlueDropTarget--local-tracks.GlueDropTarget--episodes.personal-library
   *
   > span,
+.GlueDropTarget.GlueDropTarget--tracks.personal-library * > span,
 .fsd-button,
+.main-actionBarBackground-background,
 .main-coverSlotExpanded-container,
+.main-entityHeader-backgroundColor,
 .main-home-homeHeader,
 .main-rootlist-rootlistDividerGradient,
 .volume-bar:hover ~ .control-button,
-button.main-coverSlotCollapsed-expandButton {
+button.main-coverSlotCollapsed-expandButton,
+div.main-topBar-sectionWrapper.main-topBar-entryPoints > a > span {
   display: none;
 }
 .main-nowPlayingBar-left * {
@@ -98,12 +110,6 @@ button.main-coverSlotCollapsed-expandButton {
 .main-trackInfo-artists * {
   display: inline;
 }
-.GlueDropTarget.GlueDropTarget--tracks.personal-library * > span,
-.main-actionBarBackground-background,
-.main-entityHeader-backgroundColor,
-div.main-topBar-sectionWrapper.main-topBar-entryPoints > a > span {
-  display: none;
-}
 .main-trackInfo-name * {
   margin-left: 1px;
   text-align: left;
@@ -126,16 +132,14 @@ nav.Root__nav-bar {
 }
 .main-rootlist-rootlist {
   height: calc(100% - 2em);
-  background: #202020;
   overflow: hidden;
   min-width: 207px;
 }
 .main-rootlist-rootlist * {
-  color: #fff;
+  color: var(--spice-text);
   height: auto;
 }
 ul#spicetify-sticky-list {
-  background: #202020;
   padding-bottom: 1em;
   display: grid;
   grid-template: "home" "search" "library" "market" "lyrics-plus" "playLike";
@@ -196,7 +200,6 @@ li.main-navBar-navBarItem[data-id="/lyrics-plus"] {
   border-radius: -51px;
 }
 footer.main-nowPlayingBar-container {
-  background: #202020;
   border-radius: 1rem;
   width: calc(var(--nav-bar-width) - 23px);
   min-width: 207px;
@@ -204,15 +207,13 @@ footer.main-nowPlayingBar-container {
 .player-controls__buttons.player-controls__buttons--new-icons {
   gap: 0;
 }
-.main-card-card {
-  background: #202020;
-  border-radius: 1em;
-}
+.main-card-card,
 .main-card-imageContainer *,
 .main-entityHeader-imageContainer *,
 .main-gridContainer-gridContainer.main-shelf-shelfGrid,
 .main-heroCard-card.collection-collectionEntityHeroCard-likedSongs.collection-collectionEntityHeroCard-container,
 .main-navBar-navBar,
+.main-navBar-navBarLinkActive,
 .main-playButton-PlayButton > button > span,
 .playlist-playlist-playlistImageContainer *,
 a.lyrics-tabBar-headerItemLink.lyrics-tabBar-active,
@@ -224,7 +225,6 @@ span.ChipInner__ChipInnerComponent-sc-1ly6j4j-0.kbIsPl {
   border-radius: 1em;
 }
 .main-entityHeader-headerText {
-  background: #202020;
   height: fit-content;
   padding: 1em;
   border-radius: 1em;
@@ -232,7 +232,6 @@ span.ChipInner__ChipInnerComponent-sc-1ly6j4j-0.kbIsPl {
   justify-content: center;
 }
 .playlist-playlist-playlistContent {
-  background: #202020;
   width: calc(100% - 2em);
   margin-inline: 1em;
   border-radius: 1em;
@@ -240,7 +239,7 @@ span.ChipInner__ChipInnerComponent-sc-1ly6j4j-0.kbIsPl {
 .artist-artistOverview-artistOverviewContent {
   width: calc(100% - 2em);
   margin-inline: 1em;
-  background: #202020;
+  background: var(--spice-secondary);
   border-radius: 1em;
 }
 .main-topBar-background {
@@ -252,7 +251,7 @@ span.ChipInner__ChipInnerComponent-sc-1ly6j4j-0.kbIsPl {
   border-radius: 0.5em;
 }
 .main-topBar-overlay {
-  background-color: #202020aa;
+  background-color: var(--spice-secondary) aa;
   border-bottom-left-radius: 1em;
   border-bottom-right-radius: 1em;
 }
@@ -260,7 +259,7 @@ span.ChipInner__ChipInnerComponent-sc-1ly6j4j-0.kbIsPl {
   border-radius: 1em !important;
 }
 .main-heroCard-card {
-  background: #202020;
+  background: var(--spice-secondary);
 }
 .main-cardImage-imageWrapper.main-card-hero,
 .main-cardImage-imageWrapper.main-card-hero * {
@@ -320,7 +319,7 @@ button.main-playPauseButton-button {
   --is-active-fg-color: var(--spice-button);
 }
 .main-buddyFeed-friendActivity {
-  background: #202020;
+  background: var(--spice-secondary);
   padding: 1em;
   margin: 1em;
   border-radius: 1em;
@@ -333,15 +332,12 @@ button.main-playPauseButton-button {
   background-color: var(--spice-button);
   background: var(--spice-button);
 }
-.main-navBar-navBarLinkActive {
-  border-radius: 1em;
-}
 .main-likedSongsButton-likedSongsIcon {
-  background: #fff;
+  background: var(--spice-text);
 }
 .main-createPlaylistButton-createPlaylistIcon svg,
 .main-likedSongsButton-likedSongsIcon svg {
-  fill: #202020;
+  fill: var(--spice-secondary);
 }
 .main-nowPlayingBar-container
   > div:not(.main-nowPlayingBar-nowPlayingBar)
@@ -382,7 +378,8 @@ button.main-playPauseButton-button {
   border-radius: 1em;
 }
 ::-webkit-scrollbar-thumb {
-  background: #303030;
+  background: var(--spice-secondary);
+  filter: brightness(80%);
   border-radius: 1em;
 }
 ::-webkit-scrollbar:horizontal {
@@ -471,40 +468,44 @@ ul#spicetify-sticky-list {
   margin-top: 0;
 }
 .Root__fixed-top-bar {
-  background: #202020;
+  background: var(--spice-secondary);
   margin: 1em 1em 0;
 }
-div.Root__top-container > div.main-topBar-topBarContainer > div.main-topBar-sectionWrapper.main-topBar-left > div > button{
-  background: #141414 !important;
+div.Root__top-container
+  > div.main-topBar-topBarContainer
+  > div.main-topBar-sectionWrapper.main-topBar-left
+  > div
+  > button {
+  background: var(--spice-main) !important;
 }
 div.main-topBar-sectionWrapper.main-topBar-entryPoints > a {
   height: 40px;
   border-radius: 1em;
-  background: #141414;
+  background: var(--spice-main);
   color: currentColor;
   display: flex;
   align-items: center;
 }
-div.main-topBar-sectionWrapper.main-topBar-entryPoints > a > svg > path {
-  fill: #8b8b8b;
+.main-navBar-navBarLink svg > path,
+div.main-topBar-sectionWrapper.main-topBar-entryPoints > a > svg > path,
+span.x-searchInput-searchInputSearchIcon > svg > path {
+  fill: var(--spice-subtext);
 }
 div.main-topBar-sectionWrapper.main-topBar-entryPoints > a.active {
   height: 40px;
   border-radius: 1em;
-  background: #141414;
-  color: #fff;
+  background: var(--spice-main);
+  color: var(--spice-text);
   display: flex;
   align-items: center;
 }
+.main-navBar-navBarLinkActive svg > path,
 div.main-topBar-sectionWrapper.main-topBar-entryPoints > a.active > svg > path {
-  fill: white;
+  fill: var(--spice-text);
 }
 .main-topBar-searchBar > form > input {
-  background: #141414;
-  color: white !important;
-}
-span.x-searchInput-searchInputSearchIcon > svg > path {
-  fill: #818181;
+  background: var(--spice-main);
+  color: var(--spice-text) !important;
 }
 button.main-userWidget-box,
 button.main-userWidget-box * {
@@ -521,32 +522,26 @@ figure.main-avatar-avatar > div > img {
 .main-topBar-sectionWrapper.main-topBar-right {
   padding-inline-end: var(--pfppadding) !important;
 }
-:root {--display: none; --controls-display: none; --left-back:40px; --pfppadding: 10px; --top: 10px; --left: 13px;}
+:root {
+  --display: none;
+  --controls-display: none;
+  --left-back: 40px;
+  --pfppadding: 10px;
+  --top: 10px;
+  --left: 13px;
+}
 .Root__fixed-top-bar::before {
   content: "";
   position: absolute;
-  background: #141414;
+  background: var(--spice-main);
   height: 30px;
   width: var(--left-back);
   border-radius: 1em;
-  border: 3px solid #202020;
+  border: 3px solid var(--spice-secondary);
   top: var(--top);
   left: var(--left);
   display: var(--display);
 }
-/* CDontrols border
-.main-topBar-sectionWrapper.main-topBar-right::before {
-  content: "";
-  position: absolute;
-  background: #2b2b2b;
-  height: 24px;
-  width: 128px;
-  border: 3px solid #454545;
-  top: 1px;
-  right: 1px;
-  border-radius: 1em;
-  display: var(--display);
-}*/
 .Root__fixed-top-bar::after {
   content: "";
   position: absolute;
@@ -554,21 +549,34 @@ figure.main-avatar-avatar > div > img {
   width: 134px;
   top: 1px;
   right: 1px;
-  background: linear-gradient(45deg, rgba(69,69,69,1) 0%, rgba(69,69,69,1) 9%, rgba(43,43,43,1) 9%, rgba(43,43,43,1) 100%);
+  background: linear-gradient(
+    45deg,
+    var(--spice-secondary) 0,
+    var(--spice-secondary) 9%,
+    var(--spice-main) 9%,
+    var(--spice-main) 100%
+  );
+  filter: brightness(220%);
   display: var(--controls-display);
 }
-
 button[aria-label="Friend Activity"] {
   display: none !important;
 }
-.Root__top-bar, .Root__top-bar * {
+.Root__top-bar,
+.Root__top-bar * {
   border-bottom-left-radius: 1em;
   border-bottom-right-radius: 1em;
 }
-
 .Root__top-bar {
   width: 96%;
 }
 .playlist-item__img.folder {
-    background: transparent;
+  background: 0 0;
+}
+.main-topBar-buttonActive {
+  background: var(--spice-button) !important;
+}
+.encore-dark-theme,
+.encore-dark-theme .encore-base-set {
+  --text-subdued: var(--spice-subtext) !important;
 }
