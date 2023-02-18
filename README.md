@@ -20,7 +20,7 @@ spicetify apply
 ```powershell
 Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/LucyUwi/Pocket/main/install.ps1" | Invoke-Expression
 ```
-### Pocket Extention (Recomended)
+### Pocket Extention
 ![](/HoverPreview.gif)
 ### Windows Addons
 <sup>Requires New Home Structure and Navigation Experement</sup>
@@ -31,14 +31,3 @@ Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/LucyUwi/Po
 <sup>Requires New Home Structure and Navigation Experement</sup>
 
 ![](/ControlsMac.png)
-```bash
-mv Pocket.js ~/.config/spicetify/Extensions
-spicetify config extensions Pocket.js
-spicetify apply
-```
-##### Windows
-```powershell
-Move-Item .\Pocket.js ~\AppData\Local\spicetify\Extensions\
-spicetify config extensions Pocket.js
-spicetify apply
-```
