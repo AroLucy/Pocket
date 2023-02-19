@@ -250,14 +250,14 @@ function initPocket() {
     padding-left: 10px;
   }
 
-  select#BorderRadiusUnit, select#Controls {
+  select#BorderRadiusUnit, select#Controls, selection#Small {
     background: var(--spice-main);
     border: none;
     border-radius: 1em;
     width: 3em;
     color: var(--spice-text)
   }
-  #Controls {
+  #Controls, #Small {
     width: 5em !important
   }
   #ClearButton {
@@ -345,45 +345,55 @@ function initPocket() {
 			Variable: "",
 		},
 	];
+
+
 	ConfigOptions = Array
 	for (let i = 0; i < OptionsArray.length; i++) {
-		ConfigOptions[i] = document.createElement("div")
-		ConfigOptions[i].setAttribute("class", "ConfigOption")
-
-		if (!OptionsArray[i].Options) {
-			ConfigOptions[i].innerHTML = "<h3>" + OptionsArray[i].Title + "</h3>" + "<input type='" + OptionsArray[i].Type + "' id='" + OptionsArray[i].ID + "' value='" + OptionsArray[i].Value + "'></div>";
-		} else {
-			Options = ""
-			for (let j = 0; j < OptionsArray[i].Options.length; j++) {
-				Options += "<option value='" + OptionsArray[i].Options[j] + "'>" + OptionsArray[i].Options[j] + "</option>"
-			}
-			if (OptionsArray[i].Title != "Border Radius") {
-				ConfigOptions[i].innerHTML = "<h3>" + OptionsArray[i].Title + "</h3> <select id='" + OptionsArray[i].ID + "' value='" + OptionsArray[i].Value + "'>" + Options + "</select>"
-			} else {
-				a = ConfigOptions[i - 1].childNodes[1]
-				a.placeholder = "0"
-				b = "<select id='" + OptionsArray[i].ID + "'>" + Options + "</select>"
-				c = document.createElement("div")
-				c.appendChild(a)
-				c.innerHTML += b
-				c.style.background = "var(--spice-main)"
-				c.style.display = "flex";
-				c.childNodes[1].value = OptionsArray[i].Value
-				ConfigOptions[i - 1].appendChild(c)
-			}
-		}   
+    ConfigOptions[i] = document.createElement("div")
+    ConfigOptions[i].setAttribute("class", "ConfigOption")
+  
+    if (!OptionsArray[i].Options) {
+      ConfigOptions[i].innerHTML = "<h3>" + OptionsArray[i].Title + "</h3>" + "<input type='" + OptionsArray[i].Type + "' id='" + OptionsArray[i].ID + "' value='" + OptionsArray[i].Value + "'></div>";
+    } else {
+      Options = ""
+      for (let j = 0; j < OptionsArray[i].Options.length; j++) {
+        Options += "<option value='" + OptionsArray[i].Options[j] + "' "
+        if (OptionsArray[i].Options[j] == OptionsArray[i].Value) {
+          Options += "selected>" + OptionsArray[i].Options[j] + "</option>"
+        } else {
+          Options += ">" + OptionsArray[i].Options[j] + "</option>"
+        }
+      }
+      if (OptionsArray[i].Title != "Border Radius") {
+        ConfigOptions[i].innerHTML = "<h3>" + OptionsArray[i].Title + "</h3> <select id='" + OptionsArray[i].ID + "'>" + Options + "</select>"
+      } else {
+        Amount = ConfigOptions[i - 1].childNodes[1]
+        Amount.placeholder = "0"
+        Unit = "<select id='" + OptionsArray[i].ID + "'>" + Options + "</select>"
+        Unit.value =
+        Wrapper = document.createElement("div")
+        Wrapper.appendChild(Amount)
+        Wrapper.innerHTML += Unit
+        Wrapper.style.background = "var(--spice-main)"
+        Wrapper.style.display = "flex";
+        Wrapper.childNodes[1].value = OptionsArray[i].Value
+        ConfigOptions[i - 1].appendChild(Wrapper)
+      }
+    }
     if (OptionsArray[i].ID != "Controls") {
       ConfigOptions[i].addEventListener("change", function() {
         Save();
       }, false)
-    } else {
+    } else if (OptionsArray[i].ID == "Controls") {
       ConfigOptions[i].addEventListener("change", function() {
         Save();
         PlayerHandler();
       }, false)
     }
-		options.appendChild(ConfigOptions[i])
-	}
+    options.appendChild(ConfigOptions[i])
+  }
+  
+
   ManualEditTitle = document.createElement("h3")
   ManualEditTitle.innerHTML = "[Advance] Manual Editing"
   ManualEditSubtext = document.createElement("p")
@@ -422,7 +432,9 @@ function initPocket() {
 	Subtext = document.getElementById("Secondary");
 	Card = document.getElementById("Card");
   Radius = document.getElementById("BorderRadius");
-  RadiusUnit = document.getElementById("BorderRadiusUnit");
+  RadiusUnit = document.getElementById("BorderRadiusUnit")
+  Controls = document.getElementById("Controls")
+
 
 	function Save() {
 		for (let i = 0; i < OptionsArray.length; i++) {
@@ -483,6 +495,7 @@ function initPocket() {
 			"color:#faa;",
 			"Configuration Applied"
 		);
+    SmallHandler(false)
 	}
 
   function PlayerHandler() {
@@ -490,6 +503,14 @@ function initPocket() {
       BottomPlayer()
     } else {
       SidePlayer()
+    }
+  }
+  function SmallHandler(Reload) {
+    if (config.Small == "True") {
+      removeMediaQueries()
+    } else {}
+    if (Reload == true) {
+      location.reload()
     }
   }
 
@@ -541,7 +562,9 @@ function BottomPlayer() {
   document.querySelectorAll(".main-trackInfo-container")[0].style.paddingLeft = "1em"
   document.querySelectorAll(".main-trackInfo-container")[0].style.width = "10em"
   document.querySelectorAll(".main-nowPlayingBar-center")[0].style.width = "40%"
-  document.querySelectorAll(".main-connectPicker-button > div")[0].style.bottom = "3.1em"
+  try{
+  document.querySelectorAll(".main-connectPicker-button > div")[0].style.bottom = "-3.1em"
+  } catch {}
 }
 function SidePlayer() {
   document.querySelectorAll(".Root__top-container")[0].style.gridTemplateAreas = ``
@@ -561,4 +584,14 @@ function SidePlayer() {
   document.querySelectorAll(".main-trackInfo-container")[0].style.width = ""
   document.querySelectorAll(".main-nowPlayingBar-center")[0].style.width = ""
   document.querySelectorAll(".main-connectPicker-button > div")[0].style.bottom = ""
+}
+
+function removeMediaQueries() {
+  const styleElements = document.querySelectorAll("style, link[rel='stylesheet']");
+  styleElements.forEach((element) => {
+    const css = element.innerHTML;
+    if (css.includes("@media")) {
+      element.parentNode.removeChild(element);
+    }
+  });
 }
