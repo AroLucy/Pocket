@@ -465,6 +465,7 @@ button.main-playPauseButton-button {
 .Root__fixed-top-bar {
   background: var(--spice-secondary);
   margin: 1em 1em 0;
+  border-radius: var(--border-radius);
 }
 
 div.Root__top-container > div.main-topBar-topBarContainer > div.main-topBar-sectionWrapper.main-topBar-left > div > button {
@@ -596,4 +597,11 @@ a {
 
 .main-createPlaylistButton-createPlaylistIcon {
   background: var(--spice-text);
+}
+button.queue-tabBar-moreButton.queue-tabBar-moreButtonActive {
+  border-radius: var(--border-radius);
+}
+
+.Dropdown-control {
+  border-radius: var(--border-radius);
 }
