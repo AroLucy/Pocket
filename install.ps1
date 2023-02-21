@@ -46,8 +46,8 @@ if ($PSVersionTable.PSVersion.Major -gt $PSMinVersion) {
 
   # Clone to .spicetify.
   Write-Part "DOWNLOADING    "; Write-Emphasized $sp_dot_dir
-  Invoke-WebRequest -Uri "https://raw.githubusercontent.com/LucyUwI/Pocket/main/Pocket-Spotify/color.ini" -UseBasicParsing -OutFile "$sp_dot_dir\Pocket\color.ini"
-  Invoke-WebRequest -Uri "https://raw.githubusercontent.com/LucyUwI/Pocket/main/Pocket-Spotify/user.css" -UseBasicParsing -OutFile "$sp_dot_dir\Pocket\user.css"
+  Invoke-WebRequest -Uri "https://raw.githubusercontent.com/LucyUwI/Pocket/main/Pocket/color.ini" -UseBasicParsing -OutFile "$sp_dot_dir\Pocket\color.ini"
+  Invoke-WebRequest -Uri "https://raw.githubusercontent.com/LucyUwI/Pocket/main/Pocket/user.css" -UseBasicParsing -OutFile "$sp_dot_dir\Pocket\user.css"
   Invoke-WebRequest -Uri "https://raw.githubusercontent.com/LucyUwI/Pocket/main/Pocket.js" -UseBasicParsing -OutFile "$spicePath\Extensions\Pocket.js"
   Write-Done
 
