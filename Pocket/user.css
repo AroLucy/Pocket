@@ -608,8 +608,14 @@ button.queue-tabBar-moreButton.queue-tabBar-moreButtonActive {
   border-radius: var(--border-radius);
 }
 
-.Dropdown-control {
+.Dropdown-control, .Dropdown-control path {
   border-radius: var(--border-radius);
+  background-color: var(--spice-card);
+  color: var(--spice-text);
+  fill: var(--spice-text);
+}
+.main-dropDown-dropDown {
+  color: var(--spice-text);
 }
 button.main-playPauseButton-button path {
   filter: invert(1);
@@ -619,4 +625,9 @@ button.main-playPauseButton-button path {
 .main-playPauseButton-button, .control-button:not(.control-button--active, .main-genericButton-buttonActive, .control-button-heart) path, button.main-skipBackButton-button path, button.main-skipForwardButton-button path {
   fill: var(--spice-text);
   opacity: 75%
+}
+:root, .encore-dark-theme, .encore-dark-theme .encore-base-set {
+  --spice-sidebar: var(--spice-secondary);
+  --spice-tab-active: var(--spice-card);
+  --background-highlight: var(--spice-card) !important;
 }

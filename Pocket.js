@@ -277,6 +277,9 @@ async function initPocket() {
     color: var(--spice-text);
     border-radius: 1em;
     border: none;
+  }
+  .GenericModal {
+    border-radius: 1em;
   }`;
 	options = document.createElement("div");
 	options.style.background = "var(--spice-secondary)";
@@ -309,49 +312,49 @@ try {
         Options: Object.keys(Presets),
         ID: "Presets",
         Value: config.Presets,
-        Variable: "",
+        Variable: [""],
       },
       {
         Title: "Accent Color",
         Type: ["color"],
         ID: "Accent",
         Value: config.Accent,
-        Variable: "--spice-button",
+        Variable: ["--spice-button","--spice-rgb-button"],
       },
       {
         Title: "Primary Color",
         Type: ["color"],
         ID: "Main",
         Value: config.Main,
-        Variable: "--spice-main",
+        Variable: ["--spice-main"],
       },
       {
         Title: "Secondary Color",
         Type: ["color"],
         ID: "Segment",
         Value: config.Segment,
-        Variable: "--spice-secondary",
+        Variable: ["--spice-secondary","--spice-rgb-secondary"],
       },
       {
         Title: "Tertiary Color",
         Type: ["color"],
         ID: "Card",
         Value: config.Card,
-        Variable: "--spice-card",
+        Variable: ["--spice-card","--spice-rgb-card"],
       },
       {
         Title: "Text Color",
         Type: ["color"],
         ID: "Text",
         Value: config.Text,
-        Variable: "--spice-text",
+        Variable: ["--spice-text","--spice-rgb-text"],
       },
       {
         Title: "Secondary Text Color",
         Type: ["color"],
         ID: "Subtext",
         Value: config.Subtext,
-        Variable: "--spice-subtext",
+        Variable: ["--spice-subtext","--spice-rgb-subtext"],
       },
       {
         Title: "Border Radius",
@@ -359,7 +362,7 @@ try {
         Options: [[],["px", "em"]],
         IDs: ["BorderRadius","BorderRadiusUnit"],
         Values: [config.BorderRadius,config.BorderRadiusUnit],
-        Variable: "--border-radius",
+        Variable: ["--border-radius"],
       },
       {
         Title: "Controls Position",
@@ -367,7 +370,7 @@ try {
         Options: ["Side", "Bottom"],
         ID: "Controls",
         Value: config.Controls,
-        Variable: "",
+        Variable: [""],
       },
     ];
 
@@ -537,8 +540,13 @@ try {
 	function Apply() {
 		SetStyles = document.documentElement.style;
 		for (let i = 0; i < OptionsArray.length; i++) {
-			if (OptionsArray[i].Variable != "--border-radius") {
-				SetStyles.setProperty(OptionsArray[i].Variable, config[OptionsArray[i].ID]);
+			if (OptionsArray[i].Variable[0] != "--border-radius") {
+				SetStyles.setProperty(OptionsArray[i].Variable[0], config[OptionsArray[i].ID]);
+        if (OptionsArray[i].Variable.length == 2) {
+          RGBArr = hexToRgb(config[OptionsArray[i].ID])
+          RGB = RGBArr.r + "," + RGBArr.g + "," + RGBArr.b
+          SetStyles.setProperty(OptionsArray[i].Variable[1], RGB);
+        }
 			} else {
 				SetStyles.setProperty("--border-radius", config[OptionsArray[i].IDs[0]] + config[OptionsArray[i].IDs[1]]);
 			}
@@ -567,6 +575,16 @@ try {
     if (Reload == true) {
       location.reload()
     }
+  }
+
+  
+  function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
   }
 
 	resetbut = document.createElement("button")
