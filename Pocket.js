@@ -70,7 +70,7 @@ console.log(
 );
 console.log("%c[❀ Pocket]", "color:#faa;", "Loading Configuration");
 
-function initPocket() {
+async function initPocket() {
 
   // Check if config exists 
 
@@ -86,6 +86,7 @@ function initPocket() {
 			BorderRadius: Styles.getPropertyValue("--border-radius").replace(/\s/g, "").replace(/\D/g, ""),
 			BorderRadiusUnit: Styles.getPropertyValue("--border-radius").replace(/\s/g, "").replace(/[0-9]/g, ""),
       Controls: "Side",
+      Presets: "Dark"
 		};
 		localStorage.setItem("PocketConfig", JSON.stringify(config));
 		localStorage.setItem("DefualtPocketConfig",JSON.stringify(config));
@@ -106,7 +107,7 @@ function initPocket() {
       justify-content: space-between;
       padding-block: 0.5em;
   }
-  .ConfigOption > *:not(h3) {
+  .ConfigOption > input[type="color"] {
       border-radius: 1em;
       background: transparent;
       color: var(--spice-text);
@@ -163,13 +164,6 @@ function initPocket() {
   }
   .PCDisabled {
       background: var(--spice-main);
-  }
-  input#Border-radius {
-      background: var(--spice-main);
-      border: 0;
-      border-radius: 1em;
-      height: 2em;
-      width: 4em;
   }
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
@@ -250,11 +244,11 @@ function initPocket() {
     padding-left: 10px;
   }
 
-  select#BorderRadiusUnit, select#Controls, selection#Small {
+  select {
     background: var(--spice-main);
     border: none;
     border-radius: 1em;
-    width: 3em;
+    width: fit-content;
     color: var(--spice-text)
   }
   #Controls, #Small {
@@ -270,6 +264,19 @@ function initPocket() {
   }
   #ClearButton:hover {
     transform: scale(1.1);
+  }
+  .Multi {
+    background: var(--spice-main) !important;
+    color: var(--spice-text);
+    border-radius: 1em;
+    display: block;
+    height: fit-content;
+  }
+  .Multi > * {
+    background: var(--spice-main);
+    color: var(--spice-text);
+    border-radius: 1em;
+    border: none;
   }`;
 	options = document.createElement("div");
 	options.style.background = "var(--spice-secondary)";
@@ -277,120 +284,137 @@ function initPocket() {
 	options.style.padding = "1em";
 	options.style.borderRadius = "1em";
 
+
+try {
+    PresetsPromise = await fetch("https://raw.githubusercontent.com/LucyUwI/Pocket/main/Presets.json")
+    Presets = await PresetsPromise.json()
+    localStorage.setItem("PresetsCache",JSON.stringify(Presets))
+} catch {
+  console.log("Error")
+  if (localStorage.getItem("PresetsCache") !== undefined) {
+    Presets = JSON.parse(localStorage.getItem("PresetsCache"))
+  } else {
+    Presets = {
+      "Light" : {"Accent":"#ffa6a6","Segment":"#f2f2f2","Main":"#e6e6e6","Text":"#000000","Subtext":"#383838","Card":"#ffffff","BorderRadius":"1","BorderRadiusUnit":"em","Controls":"Side","Presets":"Light"},
+      "Dark" : {"Name":"Dark","Accent":"#ffa6a6","Segment":"#202020","Main":"#141414","Text":"#ffffff","Subtext":"#b3b3b3","Card":"#242424","BorderRadius":"1","BorderRadiusUnit":"em","Controls":"Side","Presets": "Dark"}
+    }
+  }
+}
   // Availible Options
 
-	OptionsArray = [{
-			Title: "Accent Color",
-			Type: "color",
-			ID: "Accent",
-			Value: config.Accent,
-			Variable: "--spice-button",
-		},
-		{
-			Title: "Primary Color",
-			Type: "color",
-			ID: "Main",
-			Value: config.Main,
-			Variable: "--spice-main",
-		},
-		{
-			Title: "Secondary Color",
-			Type: "color",
-			ID: "Segment",
-			Value: config.Segment,
-			Variable: "--spice-secondary",
-		},
-		{
-			Title: "Tertiary Color",
-			Type: "color",
-			ID: "Card",
-			Value: config.Card,
-			Variable: "--spice-card",
-		},
-		{
-			Title: "Text Color",
-			Type: "color",
-			ID: "Text",
-			Value: config.Text,
-			Variable: "--spice-text",
-		},
-		{
-			Title: "Secondary Text Color",
-			Type: "color",
-			ID: "Subtext",
-			Value: config.Subtext,
-			Variable: "--spice-subtext",
-		},
-		{
-			Title: "Border Radius",
-			Type: "number",
-			ID: "BorderRadius",
-			Value: config.BorderRadius,
-			Variable: "--border-radius",
-		},
-		{
-			Title: "Border Radius",
-			Type: "select",
-			Options: ["px", "em"],
-			ID: "BorderRadiusUnit",
-			Value: config.BorderRadiusUnit,
-			Variable: "--border-radius",
-		},
-    {
-			Title: "Controls Position",
-			Type: "select",
-			Options: ["Side", "Bottom"],
-			ID: "Controls",
-			Value: config.Controls,
-			Variable: "",
-		},
-	];
+    OptionsArray = [
+      {
+        Title: "Presets",
+        Type: ["select"],
+        Options: Object.keys(Presets),
+        ID: "Presets",
+        Value: config.Presets,
+        Variable: "",
+      },
+      {
+        Title: "Accent Color",
+        Type: ["color"],
+        ID: "Accent",
+        Value: config.Accent,
+        Variable: "--spice-button",
+      },
+      {
+        Title: "Primary Color",
+        Type: ["color"],
+        ID: "Main",
+        Value: config.Main,
+        Variable: "--spice-main",
+      },
+      {
+        Title: "Secondary Color",
+        Type: ["color"],
+        ID: "Segment",
+        Value: config.Segment,
+        Variable: "--spice-secondary",
+      },
+      {
+        Title: "Tertiary Color",
+        Type: ["color"],
+        ID: "Card",
+        Value: config.Card,
+        Variable: "--spice-card",
+      },
+      {
+        Title: "Text Color",
+        Type: ["color"],
+        ID: "Text",
+        Value: config.Text,
+        Variable: "--spice-text",
+      },
+      {
+        Title: "Secondary Text Color",
+        Type: ["color"],
+        ID: "Subtext",
+        Value: config.Subtext,
+        Variable: "--spice-subtext",
+      },
+      {
+        Title: "Border Radius",
+        Type: ["number","select"],
+        Options: [[],["px", "em"]],
+        IDs: ["BorderRadius","BorderRadiusUnit"],
+        Values: [config.BorderRadius,config.BorderRadiusUnit],
+        Variable: "--border-radius",
+      },
+      {
+        Title: "Controls Position",
+        Type: ["select"],
+        Options: ["Side", "Bottom"],
+        ID: "Controls",
+        Value: config.Controls,
+        Variable: "",
+      },
+    ];
 
-
-	ConfigOptions = Array
-	for (let i = 0; i < OptionsArray.length; i++) {
+  function CreateOptions(Options, Value) {
+    Option = ""
+    for (let i = 0; i < Options.length; i++) {
+      Option += "<option value'" + Options[i] + "'"
+      if (Options[i] == Value) {
+        Option += " selected>" + Options[i] + "</option>"
+      } else {
+        Option += ">" + Options[i] + "</option>"
+      }
+    }
+    return Option
+  }
+  
+  ConfigOptions = Array
+  for (let i = 0; i < OptionsArray.length; i++) {
     ConfigOptions[i] = document.createElement("div")
     ConfigOptions[i].setAttribute("class", "ConfigOption")
-  
-    if (!OptionsArray[i].Options) {
-      ConfigOptions[i].innerHTML = "<h3>" + OptionsArray[i].Title + "</h3>" + "<input type='" + OptionsArray[i].Type + "' id='" + OptionsArray[i].ID + "' value='" + OptionsArray[i].Value + "'></div>";
+    if (OptionsArray[i].Type.length == 1 && OptionsArray[i].Type[0] != "select") {
+      ConfigOptions[i].innerHTML = "<h3>" + OptionsArray[i].Title + "</h3>" + "<input type='" + OptionsArray[i].Type[0] + "' id='" + OptionsArray[i].ID + "' value='" + OptionsArray[i].Value + "'></div>";
+    } else if (OptionsArray[i].Type[0] == "select") {
+      Options = CreateOptions(OptionsArray[i].Options, OptionsArray[i].Value)
+      ConfigOptions[i].innerHTML = "<h3>" + OptionsArray[i].Title + "</h3>" + "<select id='" + OptionsArray[i].ID + "'>" + Options + "</select>";
     } else {
-      Options = ""
-      for (let j = 0; j < OptionsArray[i].Options.length; j++) {
-        Options += "<option value='" + OptionsArray[i].Options[j] + "' "
-        if (OptionsArray[i].Options[j] == OptionsArray[i].Value) {
-          Options += "selected>" + OptionsArray[i].Options[j] + "</option>"
-        } else {
-          Options += ">" + OptionsArray[i].Options[j] + "</option>"
+      Fields = ""
+      for (let j = 0; j < OptionsArray[i].Type.length; j++) {
+        if (OptionsArray[i].Type[j] != "select") {
+          Fields += "<input type='" + OptionsArray[i].Type[j] + "' id='" + OptionsArray[i].IDs[j] + "' value='" + OptionsArray[i].Values[j] + "'>";
+        } else if (OptionsArray[i].Type[j] == "select") {
+          Options = CreateOptions(OptionsArray[i].Options[j], OptionsArray[i].Values[j])
+          Fields += "<select id='" + OptionsArray[i].IDs[j] + "'>" + Options + "</select>";
         }
       }
-      if (OptionsArray[i].Title != "Border Radius") {
-        ConfigOptions[i].innerHTML = "<h3>" + OptionsArray[i].Title + "</h3> <select id='" + OptionsArray[i].ID + "'>" + Options + "</select>"
-      } else {
-        Amount = ConfigOptions[i - 1].childNodes[1]
-        Amount.placeholder = "0"
-        Unit = "<select id='" + OptionsArray[i].ID + "'>" + Options + "</select>"
-        Unit.value =
-        Wrapper = document.createElement("div")
-        Wrapper.appendChild(Amount)
-        Wrapper.innerHTML += Unit
-        Wrapper.style.background = "var(--spice-main)"
-        Wrapper.style.display = "flex";
-        Wrapper.childNodes[1].value = OptionsArray[i].Value
-        ConfigOptions[i - 1].appendChild(Wrapper)
-      }
-    }
-    if (OptionsArray[i].ID != "Controls") {
-      ConfigOptions[i].addEventListener("change", function() {
-        Save();
-      }, false)
-    } else if (OptionsArray[i].ID == "Controls") {
-      ConfigOptions[i].addEventListener("change", function() {
-        Save();
-        PlayerHandler();
-      }, false)
+      ConfigOptions[i].innerHTML = "<h3>" + OptionsArray[i].Title + "</h3><div class='Multi'>" + Fields + "</div>"
     }
     options.appendChild(ConfigOptions[i])
+    if (OptionsArray[i].Type.length == 1 && i != 0) {
+      ConfigOptions[i].addEventListener("change", function() { Save(); }, false)
+    } else if (OptionsArray[i].Type.length != 1) {
+      for (let j = 0; j < OptionsArray[i].Type.length; j++) {
+        ConfigOptions[i].childNodes[j].addEventListener("change", function() { Save(); }, false)
+      }
+    } else if (i == 0) {
+      ConfigOptions[i].addEventListener("change", function() { Preset(); }, false)
+    }
   }
   
 
@@ -435,10 +459,29 @@ function initPocket() {
   RadiusUnit = document.getElementById("BorderRadiusUnit")
   Controls = document.getElementById("Controls")
 
-
+  function Preset() {
+    config = Presets[document.getElementById("Presets").value]
+    localStorage.setItem("PocketConfig", JSON.stringify(config));
+    for (let i = 0; i < OptionsArray.length; i++) {
+      if (OptionsArray[i].ID !== undefined) {
+        document.getElementById(OptionsArray[i].ID).value = config[OptionsArray[i].ID]
+      } else {
+        for (let j = 0; j < OptionsArray[i].IDs.length; j++) {
+          document.getElementById(OptionsArray[i].IDs[j]).value = config[OptionsArray[i].IDs[j]]
+        }
+      }
+    } 
+    Apply()
+  }
 	function Save() {
 		for (let i = 0; i < OptionsArray.length; i++) {
-			config[OptionsArray[i].ID] = document.getElementById(OptionsArray[i].ID).value
+      if (OptionsArray[i].Type.length == 1) {
+			  config[OptionsArray[i].ID] = document.getElementById(OptionsArray[i].ID).value
+      } else {
+        for (let j = 0; j < OptionsArray[i].IDs.length; j++) {
+          config[OptionsArray[i].IDs[j]] = document.getElementById(OptionsArray[i].IDs[j]).value
+        }
+      }
 		}
 		localStorage.setItem("PocketConfig", JSON.stringify(config));
 		Apply()
@@ -453,7 +496,13 @@ function initPocket() {
     config = JSON.parse(ManualEdit.value)
     localStorage.setItem("PocketConfig", JSON.stringify(config));
     for (let i = 0; i < OptionsArray.length; i++) {
-      document.getElementById(OptionsArray[i].ID).value = config[OptionsArray[i].ID]
+      if (OptionsArray[i].ID !== undefined) {
+        document.getElementById(OptionsArray[i].ID).value = config[OptionsArray[i].ID]
+      } else {
+        for (let j = 0; j < OptionsArray[i].IDs.length; j++) {
+          document.getElementById(OptionsArray[i].IDs[j]).value = config[OptionsArray[i].IDs[j]]
+        }
+      }
     } 
 		Apply()
     console.log(
@@ -468,7 +517,13 @@ function initPocket() {
 		config = JSON.parse(localStorage.getItem("DefualtPocketConfig"))
 		localStorage.setItem("PocketConfig", JSON.stringify(config))
 		for (let i = 0; i < OptionsArray.length; i++) {
-			document.getElementById(OptionsArray[i].ID).value = config[OptionsArray[i].ID]
+      if (OptionsArray[i].ID !== undefined) {
+			  document.getElementById(OptionsArray[i].ID).value = config[OptionsArray[i].ID]
+      } else {
+        for (let j = 0; j < OptionsArray[i].IDs.length; j++) {
+          document.getElementById(OptionsArray[i].IDs[j]).value = config[OptionsArray[i].IDs[j]]
+        }
+      }
 		}
 		Apply()
     console.log(
@@ -484,8 +539,8 @@ function initPocket() {
 		for (let i = 0; i < OptionsArray.length; i++) {
 			if (OptionsArray[i].Variable != "--border-radius") {
 				SetStyles.setProperty(OptionsArray[i].Variable, config[OptionsArray[i].ID]);
-			} else if (OptionsArray[i].ID != "BorderRadiusUnit") {
-				SetStyles.setProperty("--border-radius", config[OptionsArray[i].ID] + config[OptionsArray[i + 1].ID]);
+			} else {
+				SetStyles.setProperty("--border-radius", config[OptionsArray[i].IDs[0]] + config[OptionsArray[i].IDs[1]]);
 			}
 		}
     PlayerHandler()
@@ -558,6 +613,12 @@ function BottomPlayer() {
   for (let i = 0; i < Art.length; i++) {
     Art[i].setAttribute("style","width: 60px !important; height: 60px !important")
   }
+  Controls = document.querySelectorAll(".main-nowPlayingBar-nowPlayingBar > *")
+  for (let i = 0; i < Controls.length; i++) {
+    Controls[i].style.marginBlock = "8px"
+    Controls[i].style.marginInline = "0";
+    Controls[i].style.padding = "0"
+  }
   document.querySelectorAll(".main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer")[0].setAttribute("style","width: 60px !important; height: 60px !important")
   document.querySelectorAll(".main-trackInfo-container")[0].style.paddingLeft = "1em"
   document.querySelectorAll(".main-trackInfo-container")[0].style.width = "10em"
@@ -578,6 +639,12 @@ function SidePlayer() {
   Art = document.querySelectorAll(".main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer *")
   for (let i = 0; i < Art.length; i++) {
     Art[i].setAttribute("style","")
+  }
+  Controls = document.querySelectorAll(".main-nowPlayingBar-nowPlayingBar > *")
+  for (let i = 0; i < Controls.length; i++) {
+    Controls[i].style.marginBlock = ""
+    Controls[i].style.marginInline = "";
+    Controls[i].style.padding = ""
   }
   document.querySelectorAll(".main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer")[0].setAttribute("style","")
   document.querySelectorAll(".main-trackInfo-container")[0].style.paddingLeft = ""
