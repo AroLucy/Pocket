@@ -3,8 +3,8 @@
     "description": "A Segmented theme for Spicetify",
     "preview": "https://raw.githubusercontent.com/LucyUwI/Pocket/main/PinkPreview.png",
     "readme": "README.md",
-    "usercss": "Pocket-Spotify/user.css",
-    "schemes": "Pocket-Spotify/color.ini",
+    "usercss": "Pocket/user.css",
+    "schemes": "Pocket/color.ini",
     "include": ["https://raw.githubusercontent.com/LucyUwI/Pocket/main/Pocket.js"],
     "branch": "main",
     "authors": [
