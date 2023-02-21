@@ -393,7 +393,7 @@ try {
     ConfigOptions[i].setAttribute("class", "ConfigOption")
     if (OptionsArray[i].Type.length == 1 && OptionsArray[i].Type[0] != "select") {
       ConfigOptions[i].innerHTML = "<h3>" + OptionsArray[i].Title + "</h3>" + "<input type='" + OptionsArray[i].Type[0] + "' id='" + OptionsArray[i].ID + "' value='" + OptionsArray[i].Value + "'></div>";
-    } else if (OptionsArray[i].Type[0] == "select") {
+    } else if (OptionsArray[i].Type.length == 1 && OptionsArray[i].Type[0] == "select") {
       Options = CreateOptions(OptionsArray[i].Options, OptionsArray[i].Value)
       ConfigOptions[i].innerHTML = "<h3>" + OptionsArray[i].Title + "</h3>" + "<select id='" + OptionsArray[i].ID + "'>" + Options + "</select>";
     } else {
