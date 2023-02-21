@@ -326,7 +326,7 @@ try {
         Type: ["color"],
         ID: "Main",
         Value: config.Main,
-        Variable: ["--spice-main"],
+        Variable: ["--spice-main","--spice-rgb-main"],
       },
       {
         Title: "Secondary Color",
