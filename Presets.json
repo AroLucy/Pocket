@@ -1,0 +1,26 @@
+{
+        "Light": {
+                "Accent": "#ffa6a6",
+                "Segment": "#f2f2f2",
+                "Main": "#e6e6e6",
+                "Text": "#000000",
+                "Subtext": "#383838",
+                "Card": "#ffffff",
+                "BorderRadius": "1",
+                "BorderRadiusUnit": "em",
+                "Controls": "Side",
+                "Presets": "Light"
+        },
+        "Dark": {
+                "Accent": "#ffa6a6",
+                "Segment": "#202020",
+                "Main": "#141414",
+                "Text": "#ffffff",
+                "Subtext": "#b3b3b3",
+                "Card": "#242424",
+                "BorderRadius": "1",
+                "BorderRadiusUnit": "em",
+                "Controls": "Side",
+                "Presets": "Dark"
+        }
+}
