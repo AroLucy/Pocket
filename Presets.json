@@ -22,5 +22,41 @@
                 "BorderRadiusUnit": "em",
                 "Controls": "Side",
                 "Presets": "Dark"
+        },
+        "Nord Dark": {
+                "Accent": "#8fbcbb",
+                "Segment": "#3b4252",
+                "Main": "#2e3440",
+                "Text": "#c9ced9",
+                "Subtext": "#97a4b4",
+                "Card": "#434c5e",
+                "BorderRadius": "1",
+                "BorderRadiusUnit": "em",
+                "Controls": "Side",
+                "Presets": "Nord Dark"
+        },
+        "Nord Light": {
+                "Accent": "#8fbcbb",
+                "Segment": "#e5e9f0",
+                "Main": "#d8dee9",
+                "Text": "#4c566a",
+                "Subtext": "#97a4b4",
+                "Card": "#eceff4",
+                "BorderRadius": "1",
+                "BorderRadiusUnit": "em",
+                "Controls": "Side",
+                "Presets": "Nord Light"
+        },
+        "Dirty Coffee": {
+                "Accent": "#84602e",
+                "Segment": "#322411",
+                "Main": "#1c1712",
+                "Text": "#fbe9d0",
+                "Subtext": "#b5ada1",
+                "Card": "#1f170a",
+                "BorderRadius": "0.5",
+                "BorderRadiusUnit": "em",
+                "Controls": "Side",
+                "Presets": "Dirty Coffee"
         }
 }
