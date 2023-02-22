@@ -8,7 +8,6 @@
                 "Card": "#ffffff",
                 "BorderRadius": "1",
                 "BorderRadiusUnit": "em",
-                "Controls": "Side",
                 "Presets": "Light"
         },
         "Dark": {
@@ -20,7 +19,6 @@
                 "Card": "#242424",
                 "BorderRadius": "1",
                 "BorderRadiusUnit": "em",
-                "Controls": "Side",
                 "Presets": "Dark"
         },
         "Nord Dark": {
@@ -32,7 +30,6 @@
                 "Card": "#434c5e",
                 "BorderRadius": "1",
                 "BorderRadiusUnit": "em",
-                "Controls": "Side",
                 "Presets": "Nord Dark"
         },
         "Nord Light": {
@@ -44,7 +41,6 @@
                 "Card": "#eceff4",
                 "BorderRadius": "1",
                 "BorderRadiusUnit": "em",
-                "Controls": "Side",
                 "Presets": "Nord Light"
         },
         "Dirty Coffee": {
@@ -56,7 +52,6 @@
                 "Card": "#1f170a",
                 "BorderRadius": "0.5",
                 "BorderRadiusUnit": "em",
-                "Controls": "Side",
                 "Presets": "Dirty Coffee"
         },
         "Gruvbox Dark" : {
@@ -68,7 +63,6 @@
                 "Card": "#504945",
                 "BorderRadius": "0",
                 "BorderRadiusUnit": "em",
-                "Controls": "Side",
                 "Presets": "Gruvbox Dark"
         },
         "Gruvbox Light" : {
@@ -80,7 +74,6 @@
                 "Card": "#ebdbb2",
                 "BorderRadius": "0",
                 "BorderRadiusUnit": "em",
-                "Controls": "Side",
                 "Presets": "Gruvbox Light"
         }
 }
