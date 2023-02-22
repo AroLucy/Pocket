@@ -120,194 +120,139 @@ async function initPocket() {
 
     let content = document.createElement("div");
     let style = document.createElement("style");
-    style.innerHTML = `#MenuWrapper * {
-    color: var(--spice-text);
-  }
-  .ConfigOption {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding-block: 0.5em;
-  }
-  .ConfigOption > input[type="color"] {
-      border-radius: 1em;
-      background: transparent;
-      color: var(--spice-text);
-  }
-  .ConfigOption > * {
-      color: var(--spice-text) !important
-  }
-  input[type="color"] {
-      -webkit-appearance: none;
-      border: none;
-  }
-  input[type="color"]::-webkit-color-swatch-wrapper {
-      padding: 0;
-      margin: 0;
-  }
-  input[type="color"]::-webkit-color-swatch {
-      border: 1px solid #aaaa;
-      border-radius: 1em;
-  }
-  input[type="checkbox"] {
-      height: 0;
-      width: 0;
-      visibility: hidden;
-      padding-block: 1em;
-  }
-  label {
-      cursor: pointer;
-      text-indent: -9999px;
-      width: 3em;
-      height: 1.5em;
-      background: grey;
-      display: block;
-      border-radius: 100px;
-      position: relative;
-  }
-  label:after {
-      content: "";
-      position: absolute;
-      width: 1.5em;
-      height: 1.5em;
-      background: #fff;
-      border-radius: 90px;
-      transition: 0.3s;
-      left: 1px;
-  }
-  input:checked + label {
-      background: var(--spice-button);
-  }
-  input:checked + label:after {
-      left: calc(100% - 25px);
-  }
-  label:active:after {
-      width: 130px;
-  }
-  .PCDisabled {
-      background: var(--spice-main);
-  }
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-  }
-  select#Radius-Unit {
-      background: var(--spice-main);
-      border: 0;
-      border-radius: 1em;
-      height: 2em;
-  }
-  .main-trackCreditsModal-container {
-    background: var(--spice-card);
-    border-radius: 1em;
-  }
-
-  .GenericModal__overlay {
-    backdrop-filter: blur(5px);
-    background: transparent;
-  }
-
-  .main-trackCreditsModal-header {
-    border-bottom: none;
-  }
-
-  button.main-trackCreditsModal-closeBtn {
-    border-radius: 1em;
-    position: relative;
-    bottom: -28.4em;
-  }
-  button.main-trackCreditsModal-closeBtn:after {
-      content: "Close";
-      color: var(--spice-text);
-      background: var(--spice-button);
-      padding-inline: 1em;
-      border-radius: 1em;
-      padding-block: 0.5em;
-  }
-  button.main-trackCreditsModal-closeBtn svg {
-    display: none;
-  }
-  .buttonBox {
-    display: flex;
-    margin: 0;
-    position: sticky;
-    bottom: 1em;
-  }
-
-  .main-trackCreditsModal-header {
-    margin: 0;
-    padding-bottom: 0;
-  }
-
-  .main-trackCreditsModal-mainSection {
-    padding-top: 0;
-  }
-  button.resetbut {
-    content: "Reset";
-    color: var(--spice-text);
-    background: var(--spice-button);
-    border: 0;
-    padding: 0.5em;
-    padding-inline: 1em; border-radius: 1em;
-    position: sticky;
-    bottom: 2.5em;
-  }
-
-  button.resetbut:hover {
-    transform: scale(1.1);
-  }
-  input#BorderRadius, input#Margins {
-    background: var(--spice-main);
-    border: none;
-    border-radius: 1em;
-    width: 2.5em;
-    color: var(--spice-text);
-    padding-left: 10px;
-  }
-
-  select {
-    background: var(--spice-main);
-    border: none;
-    border-radius: 1em;
-    width: fit-content;
-    color: var(--spice-text)
-  }
-  #Controls, #Small {
-    width: 5em !important
-  }
-  #ClearButton {
-    padding: 0.5em;
-    padding-inline: 1em;
-    border-radius: 1em;
-    background: var(--spice-button);
-    color: var(--spice-text);
-    border: none;
-  }
-  #ClearButton:hover {
-    transform: scale(1.1);
-  }
-  .Multi {
-    background: var(--spice-main) !important;
-    color: var(--spice-text);
-    border-radius: 1em;
-    display: block;
-    height: fit-content;
-  }
-  .Multi > * {
-    background: var(--spice-main);
-    color: var(--spice-text);
-    border-radius: 1em;
-    border: none;
-  }
-  .GenericModal {
-    border-radius: 1em;
-  }`;
+    style.innerHTML = `.ConfigOption {
+        display: flex;
+        justify-content: space-between;
+        padding-block: calc(var(--margin) * 0.4) }
+    
+    input, select {
+        height: 2em;
+        background: var(--spice-main);
+        border: 0;
+        border-radius: var(--border-radius);
+        color: var(--spice-text);
+        width: fit-content;
+        padding-block: 0; margin: 0;
+    }
+    
+    input[type="number"] {
+        padding-inline: 0.5em; width: 3em;
+    }
+    
+    input[type="color"] {
+        -webkit-appearance: none;
+        background: transparent;
+        border: 0;
+        width: 4em !important;
+    }
+    
+    input[type="color"]::-webkit-color-swatch-wrapper {
+        padding: 0;
+    }
+    
+    input[type="color"]::-webkit-color-swatch {
+        border-radius: var(--border-radius)
+    }
+    
+    .Multi {
+        background: var(--spice-main);
+        color: var(--spice-text);
+        border-radius: var(--border-radius);
+        padding: 0;
+        margin: 0;
+        height: fit-content;
+    }
+    
+    input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    
+    .main-trackCreditsModal-header {
+        border: 0;
+        padding-bottom: 0;
+    }
+    
+    .GenericModal, .main-trackCreditsModal-container {
+        border-radius: var(--border-radius);
+        overflow: hidden;
+    }
+    
+    button.main-trackCreditsModal-closeBtn svg {
+        display: none;
+    }
+    
+    button.main-trackCreditsModal-closeBtn {
+        border-radius: 1em;
+        position: relative;
+        bottom: -28.4em;
+    }
+    
+    button.main-trackCreditsModal-closeBtn::before {
+        content: "Close";
+        color: var(--spice-text);
+        background: var(--spice-button);
+        padding-inline: 1em; border-radius: 1em;
+        padding-block: 0.5em; }
+    
+    button.resetbut {
+        color: var(--spice-text);
+        background: var(--spice-button);
+        border: 0;
+        padding: 0.5em;
+        padding-inline: 1em; border-radius: 1em;
+        position: sticky;
+        bottom: 2.5em;
+    }
+    
+    button.resetbut:hover {
+        transform: scale(1.1);
+    }
+    
+    #ClearButton {
+        padding: 0.5em;
+        padding-inline: 1em; 
+        border-radius: 1em;
+        background: var(--spice-button);
+        color: var(--spice-text);
+        border: none;
+    }
+    
+    #ClearButton:hover {
+        transform: scale(1.1);
+    }
+    
+    
+    .main-trackCreditsModal-mainSection {
+        padding-top: 0;
+    }
+    
+    main.main-trackCreditsModal-originalCredits > div > div {
+        background: var(--spice-secondary);
+        margin-block: 1em;
+        padding: 1em;
+        border-radius: var(--border-radius);
+    }
+    
+    .GenericModal__overlay {
+        backdrop-filter: blur(5px);
+        background: transparent;
+        filter: drop-shadow(0px 0px 10px var(--spice-main));
+    }
+    
+    textarea {
+        background: var(--spice-main);
+        color: var(--spice-text);
+        border-radius: var(--border-radius);
+        border: 0px;
+        padding: 1em;
+        font-family: monospace;
+    }
+        
+    main.main-trackCreditsModal-originalCredits > div > div > p {
+        color: var(--spice-subtext);
+    }`;
     options = document.createElement("div");
-    options.style.background = "var(--spice-secondary)";
-    options.style.marginBlock = "1em";
-    options.style.padding = "1em";
-    options.style.borderRadius = "1em";
 
     try {
         PresetsPromise = await fetch(
@@ -541,17 +486,10 @@ async function initPocket() {
     ManualEditTitle.innerHTML = "[Advance] Manual Editing";
     ManualEditSubtext = document.createElement("p");
     ManualEditSubtext.innerHTML = "If something goes wrong press [Reset]";
-    ManualEditSubtext.style.color = "var(--spice-subtext)";
     ManualEdit = document.createElement("textarea");
     ManualEdit.value = JSON.stringify(config);
     ManualEdit.cols = 40;
-    ManualEdit.rows = 5;
-    ManualEdit.style.background = "var(--spice-main)";
-    ManualEdit.style.color = "var(--spice-text)";
-    ManualEdit.style.borderRadius = "1em";
-    ManualEdit.style.border = "0";
-    ManualEdit.style.padding = "1em";
-    ManualEdit.style.fontFamily = "monospace";
+    ManualEdit.rows = 6;
     ManualEdit.addEventListener(
         "input",
         function () {
