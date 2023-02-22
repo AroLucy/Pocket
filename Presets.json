@@ -58,5 +58,28 @@
                 "BorderRadiusUnit": "em",
                 "Controls": "Side",
                 "Presets": "Dirty Coffee"
-        }
+        },
+        "Gruvbox Dark" : {
+                "Accent": "#83a598",
+                "Segment": "#282828",
+                "Main": "#1d2021",
+                "Text": "#fbf1c7",
+                "Subtext": "#a89984",
+                "Card": "#504945",
+                "BorderRadius": "0",
+                "BorderRadiusUnit": "em",
+                "Controls": "Side",
+                "Presets": "Gruvbox Dark"
+        },
+        "Gruvbox Light" : {
+                "Accent": "#83a598",
+                "Segment": "#fbf1c7",
+                "Main": "#f9f5d7",
+                "Text": "#282828",
+                "Subtext": "#7c6f64",
+                "Card": "#ebdbb2",
+                "BorderRadius": "0",
+                "BorderRadiusUnit": "em",
+                "Controls": "Side",
+                "Presets": "Gruvbox Light"}
 }
