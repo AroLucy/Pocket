@@ -81,5 +81,6 @@
                 "BorderRadius": "0",
                 "BorderRadiusUnit": "em",
                 "Controls": "Side",
-                "Presets": "Gruvbox Light"}
+                "Presets": "Gruvbox Light"
+        }
 }
