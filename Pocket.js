@@ -13,7 +13,7 @@ async function InitPocket() {
 
     //////// Load / Create Config If It Doesn't Exists ////////
 
-    if (localStorage.getItem("PocketConfig") === undefined) {
+    if (localStorage.getItem("PocketConfig") == undefined) {
         Styles = getComputedStyle(document.documentElement);
         Config = {
             Accent: Styles.getPropertyValue("--spice-button").replace(/\s/g,""),
