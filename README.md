@@ -33,8 +33,8 @@ Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/LucyUwi/Po
 | ![](Previews/NordDark.png)    | ![](Previews/NordLight.png)    |
 |        **Gruvbox Dark**       |        **Gruvbox Light**       |
 | ![](Previews/GruvboxDark.png) | ![](Previews/GruvboxLight.png) |
-|        **Dirty Coffee**       |                                |
-| ![](Previews/DirtyCoffee.png) |                                |
+|        **Dirty Coffee**       |         **Milk Coffee**        |
+| ![](Previews/DirtyCoffee.png) | ![](Previews/MilkCoffee.png)   |
 
 
 ## Todo
