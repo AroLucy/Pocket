@@ -73,7 +73,7 @@
                 "BorderRadiusUnit":"em",
                 "Margins":"1",
                 "MarginsUnit":"em",
-                "Presets":"Milk Coffee",
+                "Presets":"Milk Coffee"
         },
         "Gruvbox Dark" : {
                 "Accent": "#83a598",
