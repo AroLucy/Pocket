@@ -74,7 +74,7 @@
                 "Margins":"1",
                 "MarginsUnit":"em",
                 "Presets":"Milk Coffee",
-        }
+        },
         "Gruvbox Dark" : {
                 "Accent": "#83a598",
                 "Segment": "#282828",
