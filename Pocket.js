@@ -30,6 +30,8 @@ async function InitPocket() {
             MarginsUnit: Styles.getPropertyValue("--margin").replace(/\s/g,"").replace(/[0-9]/g, ""),
         };
         localStorage.setItem("PocketConfig", JSON.stringify(Config));
+        localStorage.setItem("DefaultPocketConfig", JSON.stringify(Config));
+
     } else {
         Config = JSON.parse(localStorage.getItem("PocketConfig"));
     }
@@ -136,7 +138,7 @@ async function InitPocket() {
         //////// Reset All Settings ////////
 
         static Reset() {
-            Config = JSON.parse(localStorage.getItem("DefualtPocketConfig"));
+            Config = JSON.parse(localStorage.getItem("DefaultPocketConfig"));
             localStorage.setItem("PocketConfig", JSON.stringify(Config));
             for (let i = 0; i < ConfigArray.length; i++) {
                 if (ConfigArray[i].ID !== undefined) {
@@ -155,6 +157,7 @@ async function InitPocket() {
 
         static Clear() {
             localStorage.removeItem("PocketConfig");
+            localStorage.removeItem("DefaultPocketConfig");
             localStorage.removeItem("PresetCache");
             location.reload();
         }
@@ -162,7 +165,7 @@ async function InitPocket() {
         //////// Apply Stylesheet to Move Player to Bottom ////////
 
         static BottomPlayer() {
-            const Style = document.createElement("style");
+            let Style = document.createElement("style");
             Style.id = "BottomPlayer";
             Style.innerHTML = `
                 .Root__top-container {
@@ -190,21 +193,31 @@ async function InitPocket() {
                     display: grid;
                     grid-template: "Art Info Like";
                 }
-                .main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer * {
+                .main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer *:not(.main-coverSlotCollapsed-expandButton, .main-coverSlotCollapsed-expandButton *) {
                     width: 60px !important;
                     height: 60px !important;
+                }
+                .main-coverSlotCollapsed-expandButton {
+                    display: block !important;
                 }
                 .main-nowPlayingBar-nowPlayingBar > * {
                     margin-block: 8px;
                     margin-inline: 0;
                     padding: 0;
                 }
-                .main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer {
+                .main-coverSlotCollapsed-expandButton {
+                    width: 2em
+                }
+                .main-coverSlotCollapsed-expandButton svg {
+                    width: 1.5em;
+                    height: 2em;
+                }
+                .main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer:not(.main-coverSlotCollapsed-expandButton, .main-coverSlotCollapsed-expandButton *) {
                     width: 60px !important;
                     height: 60px !important;
                 }
                 .main-trackInfo-container {
-                    padding-left: 1em;
+                    padding-left: 1.2em;
                     width: 10em;
                 }
                 .main-nowPlayingBar-center {
@@ -213,6 +226,29 @@ async function InitPocket() {
                 .main-connectPicker-button > div {
                     bottom: -3.1em;
                 }
+                .main-coverSlotExpanded-container {
+                    width: calc(100% - calc(var(--margin) *2));
+                    border-radius: 1em;
+                    margin-inline: var(--margin);
+                    margin-block-start: var(--margin);
+                    display: block !important;
+                }
+                
+                .main-coverSlotExpanded-container * {
+                    border-radius: 1em;
+                }
+                
+                .main-trackInfo-container {
+                    padding-left: 1.2em;
+                }
+                
+                [dir=ltr] .main-nowPlayingWidget-coverExpanded {
+                    -webkit-transform: translateX(-72px);
+                    transform: translateX(-19px);
+                }
+                [dir=ltr] .main-nowPlayingWidget-coverExpanded > .main-coverSlotCollapsed-container {
+                    display: none
+                }
             `;
             document.body.appendChild(Style);
         }
@@ -220,7 +256,7 @@ async function InitPocket() {
         //////// Delete Stylesheet to Move Player to Side ////////
 
         static SidePlayer() {
-            const BottomPlayerStyle = document.getElementById("BottomPlayer");
+            let BottomPlayerStyle = document.getElementById("BottomPlayer");
             if (BottomPlayerStyle) {
                 BottomPlayerStyle.remove();
             }
@@ -333,7 +369,7 @@ async function InitPocket() {
             ResetButton.setAttribute("class", "ResetButton");
             ResetButton.innerHTML = "Reset";
             Parent.appendChild(ResetButton)
-            ResetButton.addEventListener("click", function () { Reset(); }, false);
+            ResetButton.addEventListener("click", function () { Pocket.Reset(); }, false);
             
             return Parent
         }
@@ -493,17 +529,19 @@ async function InitPocket() {
         static async GetPresets() {
             try {
                 let PresetsPromise = await fetch(
-                    "https://raw.githubusercontent.com/LucyUwI/Pocket/main/Presets.json"
+                    "https://raaw.githubusercontent.com/LucyUwI/Pocket/main/Presets.json"
                 );
                 let Presets = await PresetsPromise.json();
                 localStorage.setItem("PresetsCache", JSON.stringify(Presets));
                 return Presets
             } catch {
-                console.log("Error");
-                if (localStorage.getItem("PresetsCache") !== undefined) {
-                    let Presets = JSON.parse(localStorage.getItem("PresetsCache"));
+                console.error("%c[❀ Pocket]", "color:#faa;", "Error getting `Presets.json` from `https://raw.githubusercontent.com/LucyUwI/Pocket/main/Presets.json`");
+                if (localStorage.getItem("PresetsCache") != undefined) {
+                    console.warn("%c[❀ Pocket]", "color:#faa;", "Using Cached Presets")
+                    var Presets = JSON.parse(localStorage.getItem("PresetsCache"));
                 } else {
-                    let Presets = {
+                    console.warn("%c[❀ Pocket]", "color:#faa;", "Using Default Presets")
+                    var Presets = {
                         Light: {
                             Accent: "#ffa6a6",
                             Segment: "#f2f2f2",
@@ -542,7 +580,7 @@ async function InitPocket() {
 
     //////// Array Of Config Options ////////
 
-    ConfigArray = [
+    let ConfigArray = [
         {
             Title: "Presets",
             Type: ["select"],
@@ -563,7 +601,7 @@ async function InitPocket() {
             Type: ["color"],
             ID: "Main",
             Value: Config.Main,
-            Variable: ["--spice-main"],
+            Variable: ["--spice-main", "--spice-rgb-main"],
         },
         {
             Title: "Secondary Color",
@@ -618,11 +656,10 @@ async function InitPocket() {
             Variable: [""],
         },
     ];
-    console.log(ConfigArray)
 
     //////// Generate Menu ////////
 
-    content = Pocket.GenConfigPage( ConfigArray )
+    let MenuContent = Pocket.GenConfigPage( ConfigArray )
     
     
     //////// Create Button For Menu ////////
@@ -631,7 +668,7 @@ async function InitPocket() {
     new Spicetify.Topbar.Button("Pocket", SVG, () => {
         Spicetify.PopupModal.display({
             title: "Pocket Settings",
-            content,
+            content: MenuContent,
         });
     });
 

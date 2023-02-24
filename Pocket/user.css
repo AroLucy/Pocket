@@ -70,12 +70,15 @@ div.main-topBar-sectionWrapper.main-topBar-entryPoints > a > span {
 .main-nowPlayingBar-left * {
     display: flex;
     flex-direction: column;
-    transform: none !important;
+    transform: none;
     width: 100%;
+}
+[dir=ltr] .main-nowPlayingWidget-coverExpanded {
+    transform: none;
 }
 
 .main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer,
-.main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer * {
+.main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer *:not(.main-coverSlotCollapsed-expandButton, .main-coverSlotCollapsed-expandButton *) {
     width: 180px !important;
     height: 180px !important;
     transform: none !important;
