@@ -1,14 +1,16 @@
-## Table of Contents
+![](Previews/PocketLogo.png)
+
+A Segmented theme for Spicetify <3
+
+###### Table of Contents
 - [Todo](#todo)
   - [JavaScript](#javascript)
   - [CSS](#css)
 - [Applying](#applying)
   - [Linux/Mac](#LinuxMac)
   - [Windows](#windows)
-  
-![](Previews/PocketLogo.png)
+- [Presets](#Presets)
 
-A Segmented theme for Spicetify <3
 ![Preview.gif](Preview.gif)
 
 ![NewTitle.png](NewTitle.png)
@@ -26,7 +28,7 @@ curl -fsSL "https://raw.githubusercontent.com/LucyUwi/Pocket/main/install.sh" | 
 Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/LucyUwi/Pocket/main/install.ps1" | Invoke-Expression
 ```
 
-## Preset Previews
+## <a name="Presets"></a>Presets
 |            **Dark**           |            **Light**           |
 |:-----------------------------:|:------------------------------:|
 | ![](Previews/Dark.png)        | ![](Previews/Light.png)        |
