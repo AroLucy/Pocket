@@ -19,6 +19,8 @@
                 "Card": "#242424",
                 "BorderRadius": "1",
                 "BorderRadiusUnit": "em",
+                "Margins":"1",
+                "MarginsUnit":"em",
                 "Presets": "Dark"
         },
         "Nord Dark": {
@@ -30,6 +32,8 @@
                 "Card": "#434c5e",
                 "BorderRadius": "1",
                 "BorderRadiusUnit": "em",
+                "Margins":"1",
+                "MarginsUnit":"em",
                 "Presets": "Nord Dark"
         },
         "Nord Light": {
@@ -41,6 +45,8 @@
                 "Card": "#eceff4",
                 "BorderRadius": "1",
                 "BorderRadiusUnit": "em",
+                "Margins":"1",
+                "MarginsUnit":"em",
                 "Presets": "Nord Light"
         },
         "Dirty Coffee": {
@@ -52,8 +58,23 @@
                 "Card": "#1f170a",
                 "BorderRadius": "0.5",
                 "BorderRadiusUnit": "em",
+                "Margins":"1",
+                "MarginsUnit":"em",
                 "Presets": "Dirty Coffee"
         },
+        "Milk Coffee": {
+                "Accent":"#d1ad7b",
+                "Segment":"#eee1ce",
+                "Main":"#ede8e3",
+                "Text":"#2f1d04",
+                "Subtext":"#5e564a",
+                "Card":"#f5ede0",
+                "BorderRadius":"0.5",
+                "BorderRadiusUnit":"em",
+                "Margins":"1",
+                "MarginsUnit":"em",
+                "Presets":"Milk Coffee",
+        }
         "Gruvbox Dark" : {
                 "Accent": "#83a598",
                 "Segment": "#282828",
@@ -63,6 +84,8 @@
                 "Card": "#504945",
                 "BorderRadius": "0",
                 "BorderRadiusUnit": "em",
+                "Margins":"1",
+                "MarginsUnit":"em",
                 "Presets": "Gruvbox Dark"
         },
         "Gruvbox Light" : {
@@ -74,6 +97,8 @@
                 "Card": "#ebdbb2",
                 "BorderRadius": "0",
                 "BorderRadiusUnit": "em",
+                "Margins":"1",
+                "MarginsUnit":"em",
                 "Presets": "Gruvbox Light"
         }
 }
