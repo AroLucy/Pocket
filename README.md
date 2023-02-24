@@ -3,13 +3,13 @@
 A Segmented theme for Spicetify <3
 
 ###### Table of Contents
-- [Todo](#todo)
-  - [JavaScript](#javascript)
-  - [CSS](#css)
 - [Applying](#applying)
   - [Linux/Mac](#LinuxMac)
   - [Windows](#windows)
 - [Presets](#Presets)
+- [Todo](#todo)
+  - [JavaScript](#javascript)
+  - [CSS](#css)
 
 ![Preview.gif](Preview.gif)
 
