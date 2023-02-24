@@ -529,7 +529,7 @@ async function InitPocket() {
         static async GetPresets() {
             try {
                 let PresetsPromise = await fetch(
-                    "https://raaw.githubusercontent.com/LucyUwI/Pocket/main/Presets.json"
+                    "https://raw.githubusercontent.com/LucyUwI/Pocket/main/Presets.json"
                 );
                 let Presets = await PresetsPromise.json();
                 localStorage.setItem("PresetsCache", JSON.stringify(Presets));
