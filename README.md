@@ -5,8 +5,9 @@
 - [Applying](#applying)
   - [Linux/Mac](#LinuxMac)
   - [Windows](#windows)
+  
+![](Previews/PocketLogo.png)
 
-# Pocket-Spotify
 A Segmented theme for Spicetify <3
 ![Preview.gif](Preview.gif)
 
