@@ -1,6 +1,6 @@
 ![](Previews/PocketLogo.png)
 
-A Segmented theme for Spicetify <3
+A Customisable Segmented theme for Spicetify <3
 
 ###### Table of Contents
 - [Applying](#applying)
