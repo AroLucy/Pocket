@@ -1,6 +1,6 @@
-(async function pocket() {
+(async function Pocket() {
     if (!(Spicetify.Player?.data && Spicetify.Menu && Spicetify.LocalStorage && Spicetify.Platform)) {
-        setTimeout(pocket, 300);
+        setTimeout(Pocket, 300);
         return;
     }
     const { Player, Menu, LocalStorage, Platform, React } = Spicetify;
@@ -28,6 +28,7 @@ async function InitPocket() {
             Presets: "Dark",
             Margins: Styles.getPropertyValue("--margin").replace(/\s/g,"").replace(/\D/g, ""),
             MarginsUnit: Styles.getPropertyValue("--margin").replace(/\s/g,"").replace(/[0-9]/g, ""),
+            CustomFontEnabled: false,
         };
         localStorage.setItem("PocketConfig", JSON.stringify(Config));
         localStorage.setItem("DefaultPocketConfig", JSON.stringify(Config));
@@ -60,6 +61,7 @@ async function InitPocket() {
                     SetStyles.setProperty(ConfigArray[i].Variable[0], Radius);
                 }
             }
+            Pocket.ApplyFont()
             Pocket.PlayerHandler();
             try {document.getElementById("ManualEdit").value = JSON.stringify(Config);} catch {}
             console.log("%c[❀ Pocket]", "color:#faa;", "Configuration Applied");
@@ -67,7 +69,7 @@ async function InitPocket() {
 
         //////// Save Current Config ////////
 
-        static Save() {
+        static Save( ConfigArray ) {
             for (let i = 0; i < ConfigArray.length; i++) {
                 if (ConfigArray[i].Type.length == 1) {
                     Config[ConfigArray[i].ID] = document.getElementById(ConfigArray[i].ID).value;
@@ -98,6 +100,8 @@ async function InitPocket() {
                     }
                 }
             }
+            document.getElementById("FontName").value = Config.FontName
+            document.getElementById("FontURL").value = Config.FontURL
             Pocket.Apply();
             console.log("%c[❀ Pocket]", "color:#faa;", "Configuration Saved, Now:", Config);
         }
@@ -189,9 +193,10 @@ async function InitPocket() {
                 footer.main-nowPlayingBar-container {
                     min-width: 100%;
                 }
-                .main-nowPlayingWidget-nowPlaying {
+                .main-nowPlayingWidget-nowPlaying:not(.main-nowPlayingWidget-coverExpanded) {
                     display: grid;
                     grid-template: "Art Info Like";
+                    grid-auto-columns: auto;
                 }
                 .main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer *:not(.main-coverSlotCollapsed-expandButton, .main-coverSlotCollapsed-expandButton *) {
                     width: 60px !important;
@@ -248,6 +253,10 @@ async function InitPocket() {
                 }
                 [dir=ltr] .main-nowPlayingWidget-coverExpanded > .main-coverSlotCollapsed-container {
                     display: none
+                }
+                .main-navBar-navBar > div:has(.main-coverSlotExpanded-container) {
+                    width: auto;
+                    margin: 0;
                 }
             `;
             document.body.appendChild(Style);
@@ -317,10 +326,10 @@ async function InitPocket() {
                 }
                 Parent.appendChild(ConfigOptions[i]);
                 if (ConfigArray[i].Type.length == 1 && i != 0) {
-                    ConfigOptions[i].addEventListener("change", function () { Pocket.Save(); }, false);
+                    ConfigOptions[i].addEventListener("change", function () { Pocket.Save( ConfigArray ); }, false);
                 } else if (ConfigArray[i].Type.length != 1) {
                     for (let j = 0; j < ConfigArray[i].Type.length; j++) {
-                        ConfigOptions[i].childNodes[j].addEventListener("change", function () { Pocket.Save(); }, false);
+                        ConfigOptions[i].childNodes[j].addEventListener("change", function () { Pocket.Save( ConfigArray ); }, false);
                     }
                 } else if (i == 0) {
                     ConfigOptions[i].addEventListener("change", function () { Pocket.Preset(); }, false);
@@ -332,6 +341,8 @@ async function InitPocket() {
         //////// Create Manual Edit HTML ////////
 
         static GenManualEdit( Parent ) {
+            let ManualEditDiv = document.createElement("div")
+            ManualEditDiv.style.filter = "drop-shadow(0px 0px 5px #f004)"
             let ManualEditTitle = document.createElement("h3");
             ManualEditTitle.innerHTML = "[Advance] Manual Editing";
             let ManualEditSubtext = document.createElement("p");
@@ -343,9 +354,11 @@ async function InitPocket() {
             ManualEdit.rows = 6;
             ManualEdit.addEventListener("input", function () { Pocket.ManualSave(); }, false );
 
-            Parent.appendChild(ManualEditTitle);
-            Parent.appendChild(ManualEditSubtext);
-            Parent.appendChild(ManualEdit);
+            ManualEditDiv.appendChild(ManualEditTitle);
+            ManualEditDiv.appendChild(ManualEditSubtext);
+            ManualEditDiv.appendChild(ManualEdit);
+            ManualEditDiv = Pocket.GenClear( ManualEditDiv );
+            Parent.appendChild(ManualEditDiv)
 
             return Parent
         }
@@ -362,14 +375,37 @@ async function InitPocket() {
             return Parent
         }
 
-        //////// Create Reset Button HTML ////////
+        //////// Create Reset, Preview and Close Button HTML ////////
 
-        static GenReset( Parent ) {
+        static GenButtons( Parent ) {
+            let ButtonBox = document.createElement("div")
+            ButtonBox.setAttribute("class","ButtonBox")
+            Parent.appendChild(ButtonBox)
+
             let ResetButton = document.createElement("button");
-            ResetButton.setAttribute("class", "ResetButton");
+            ResetButton.setAttribute("class", "ButtonBoxButton");
             ResetButton.innerHTML = "Reset";
-            Parent.appendChild(ResetButton)
+            ButtonBox.appendChild(ResetButton)
             ResetButton.addEventListener("click", function () { Pocket.Reset(); }, false);
+
+            let PreviewButton = document.createElement("button");
+            PreviewButton.setAttribute("class", "ButtonBoxButton");
+            PreviewButton.innerHTML = "Preview";
+            ButtonBox.appendChild(PreviewButton)
+            PreviewButton.addEventListener("mouseover", function () { 
+                document.getElementsByClassName("GenericModal__overlay")[0].style.backdropFilter = "blur(0px)"
+                document.getElementsByClassName("GenericModal")[0].style.opacity = "0%"
+            }, false);
+            PreviewButton.addEventListener("mouseout", function () { 
+                document.getElementsByClassName("GenericModal__overlay")[0].style.backdropFilter = "blur(5px)"
+                document.getElementsByClassName("GenericModal")[0].style.opacity = "100%"
+            }, false);
+
+            let CloseButton = document.createElement("button");
+            CloseButton.setAttribute("class", "ButtonBoxButton");
+            CloseButton.innerHTML = "Close";
+            ButtonBox.appendChild(CloseButton)
+            CloseButton.addEventListener("click", function () { document.getElementsByTagName("generic-modal")[0].remove() }, false);
             
             return Parent
         }
@@ -438,35 +474,29 @@ async function InitPocket() {
                 border-radius: var(--border-radius);
                 overflow: hidden;
             }
-            
-            button.main-trackCreditsModal-closeBtn svg {
-                display: none;
+            .GenericModal {
+                background: transparent
+            }
+
+            .GenericModal * > textarea {
+                width: 100%;
+                height: fit-content
             }
             
             button.main-trackCreditsModal-closeBtn {
-                border-radius: 1em;
-                position: relative;
-                bottom: -28.4em;
+                display: none;
             }
             
-            button.main-trackCreditsModal-closeBtn::before {
-                content: "Close";
-                color: var(--spice-text);
-                background: var(--spice-button);
-                padding-inline: 1em; border-radius: 1em;
-                padding-block: 0.5em; }
-            
-            button.ResetButton {
+            button.ButtonBoxButton {
                 color: var(--spice-text);
                 background: var(--spice-button);
                 border: 0;
                 padding: 0.5em;
                 padding-inline: 1em; border-radius: 1em;
                 position: sticky;
-                bottom: 2.5em;
             }
             
-            button.ResetButton:hover {
+            button.ButtonBoxButton:hover {
                 transform: scale(1.1);
             }
             
@@ -512,14 +542,27 @@ async function InitPocket() {
                 
             main.main-trackCreditsModal-originalCredits > div > div > p {
                 color: var(--spice-subtext);
+            }
+            .ButtonBox {
+                position: sticky;
+                bottom: 1em;
+                display: flex;
+                justify-content: space-between;
+                background: rgb(var(--spice-rgb-secondary),0.75) !important;
+                backdrop-filter: blur(5px);
+            }
+            .DisabledOption {
+                background: var(--spice-main);
+                border-radius: var(--border-radius);
+                color: var(--spice-subtext);
             }`;
 
             Config = Pocket.GenConfig( Config, ConfigArray );
-            Config = Pocket.GenManualEdit( Config );
-            Config = Pocket.GenClear( Config );
             ConfigMenu.appendChild( Style );
-            ConfigMenu.appendChild( Config )
-            ConfigMenu = Pocket.GenReset( ConfigMenu );
+            ConfigMenu.appendChild( Config );
+            ConfigMenu = Pocket.GenFontSettings( ConfigMenu );
+            ConfigMenu = Pocket.GenManualEdit( ConfigMenu );
+            ConfigMenu = Pocket.GenButtons( ConfigMenu );
 
             return ConfigMenu
         }
@@ -528,9 +571,7 @@ async function InitPocket() {
 
         static async GetPresets() {
             try {
-                let PresetsPromise = await fetch(
-                    "https://raw.githubusercontent.com/LucyUwI/Pocket/main/Presets.json"
-                );
+                let PresetsPromise = await fetch("https://raw.githubusercontent.com/LucyUwI/Pocket/main/Presets.json");
                 let Presets = await PresetsPromise.json();
                 localStorage.setItem("PresetsCache", JSON.stringify(Presets));
                 return Presets
@@ -572,6 +613,122 @@ async function InitPocket() {
                 return Presets
             }
         }
+
+        //////// Gen Font Settings Section ////////
+
+        static GenFontSettings( Parent ) {
+            let FontSettingsDiv = document.createElement("div")
+        
+            let EnableFontSettings = document.createElement("div")
+            EnableFontSettings.classList.add("ConfigOption")
+            let EnableFontSettingsTitle = document.createElement("h3")
+            EnableFontSettingsTitle.innerHTML = "Enable Custom Font"
+        
+            let EnableFontSettingsSwitchWrapper = document.createElement("label")
+            EnableFontSettingsSwitchWrapper.classList.add("x-toggle-wrapper")
+        
+            let EnableFontSettingsSwitch = document.createElement("input")
+            EnableFontSettingsSwitch.type = "checkbox"
+            EnableFontSettingsSwitch.classList.add("x-toggle-input")
+            EnableFontSettingsSwitch.checked = Config.CustomFontEnabled
+            EnableFontSettingsSwitchWrapper.appendChild(EnableFontSettingsSwitch)
+            
+            let EnableFontSettingsSwitchKnobWrapper = document.createElement("span")
+            EnableFontSettingsSwitchKnobWrapper.classList.add("x-toggle-indicatorWrapper")
+            let EnableFontSettingsSwitchKnob = document.createElement("span")
+            EnableFontSettingsSwitchKnob.classList.add("x-toggle-indicator")
+            EnableFontSettingsSwitchWrapper.appendChild(EnableFontSettingsSwitchKnobWrapper)
+            EnableFontSettingsSwitchKnobWrapper.appendChild(EnableFontSettingsSwitchKnob)
+        
+            EnableFontSettings.appendChild(EnableFontSettingsTitle)
+            EnableFontSettings.appendChild(EnableFontSettingsSwitchWrapper)
+            FontSettingsDiv.appendChild(EnableFontSettings)
+        
+            let FontNameDiv = document.createElement("div")
+            FontNameDiv.classList.add("ConfigOption")
+            let FontNameTitle = document.createElement("h3")
+            FontNameTitle.innerHTML = "Font Name"
+            FontNameDiv.appendChild(FontNameTitle)
+            let FontNameInput = document.createElement("input")
+            FontNameInput.placehholder = "Font"
+            if (!Config.CustomFontEnabled) {
+                FontNameInput.disabled = "true"
+                FontNameDiv.classList.add('DisabledOption')
+            }
+            FontNameDiv.appendChild(FontNameInput)
+        
+            let FontURLDiv = document.createElement("div")
+            FontURLDiv.classList.add("ConfigOption")
+            let FontURLTitle = document.createElement("h3")
+            FontURLTitle.innerHTML = "Font URL"
+            FontURLDiv.appendChild(FontURLTitle)
+            let FontURLInput = document.createElement("input")
+            FontURLInput.placehholder = "https://example.com/font.ttf"
+            if (!Config.CustomFontEnabled) {
+                FontURLInput.disabled = "true"
+                FontURLDiv.classList.add('DisabledOption')
+            }
+            FontURLDiv.appendChild(FontURLInput)
+
+            if (Config.FontName && Config.FontURL) {
+                FontNameInput.value = Config.FontName
+                FontURLInput.value = Config.FontURL
+                Pocket.ApplyFont()
+            }
+            FontNameInput.setAttribute("id","FontName")
+            FontURLInput.setAttribute("id","FontURL")
+
+            let URLInfo = document.createElement("p")
+            URLInfo.innerHTML = "Please Use Google fonts or direct link to a font"
+        
+            FontSettingsDiv.appendChild(FontNameDiv)
+            FontSettingsDiv.appendChild(FontURLDiv)
+            FontSettingsDiv.appendChild(URLInfo)
+
+            EnableFontSettingsSwitch.addEventListener('change', function() {
+                if (this.checked) {
+                    Config.CustomFontEnabled = true
+                    FontNameInput.disabled = false
+                    FontNameDiv.classList.remove('DisabledOption')
+                    FontURLInput.disabled = false
+                    FontURLDiv.classList.remove('DisabledOption')
+                    Pocket.ApplyFont()
+                } else {
+                    Config.CustomFontEnabled = false
+                    FontNameInput.disabled = true
+                    FontNameDiv.classList.add('DisabledOption')
+                    FontURLInput.disabled = true
+                    FontURLDiv.classList.add('DisabledOption')
+                    if (document.getElementById("FontsStyleSheet")) document.getElementById("FontsStyleSheet").remove()
+                }
+                Pocket.Save( ConfigArray )
+            })
+            FontNameInput.addEventListener('change', (function () { Config.FontName = FontNameInput.value; Pocket.ApplyFont(); Pocket.Save( ConfigArray )}), false )
+            FontURLInput.addEventListener('change', (function () { Config.FontURL = FontURLInput.value; Pocket.ApplyFont(); Pocket.Save( ConfigArray )}), false )
+            
+            Parent.appendChild(FontSettingsDiv)
+            return Parent
+        }
+
+        //////// Font Settings ////////
+
+        static ApplyFont() {
+            if (Config.CustomFontEnabled) {
+                let FontName = Config.FontName;
+                if (!FontName) return
+                let FontURL = Config.FontURL
+                if (!FontURL) return 
+                if (document.getElementById("FontsStyleSheet")) document.getElementById("FontsStyleSheet").remove()
+
+                let FontStyleSheet = document.createElement("style")
+                FontStyleSheet.setAttribute('id','FontsStyleSheet')
+                !FontURL.includes("fonts.googleapis.com") 
+                    ? FontStyleSheet.innerHTML = `@font-face {font-family: ` + FontName + `; src: url('` + FontURL + `');} * {font-family: "` + FontName + `" !important; }` 
+                    : FontStyleSheet.innerHTML = `@import url('` + FontURL + `'); * {font-family: "` + FontName + `" !important; }`
+                document.body.appendChild(FontStyleSheet)
+            }
+        }
+
     };
 
     //////// Get Presets ////////
@@ -580,7 +737,7 @@ async function InitPocket() {
 
     //////// Array Of Config Options ////////
 
-    let ConfigArray = [
+    ConfigArray = [
         {
             Title: "Presets",
             Type: ["select"],

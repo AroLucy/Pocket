@@ -1,16 +1,8 @@
-.Root__main-view,
-.Root__top-container,
-aside.main-buddyFeed-container.Root__right-sidebar,
-nav.Root__nav-bar {
+.Root__main-view, .Root__top-container, aside.main-buddyFeed-container.Root__right-sidebar, nav.Root__nav-bar {
     background: var(--spice-main);
 }
 
-.main-card-card,
-.main-entityHeader-headerText,
-.main-rootlist-rootlist,
-.playlist-playlist-playlistContent,
-footer.main-nowPlayingBar-container,
-ul#spicetify-sticky-list {
+.main-card-card, .main-entityHeader-headerText, .main-rootlist-rootlist, .playlist-playlist-playlistContent, footer.main-nowPlayingBar-container, ul#spicetify-sticky-list {
     background: var(--spice-secondary);
 }
 
@@ -22,9 +14,7 @@ ul#spicetify-sticky-list {
     grid-template-areas: "nav-bar main-view right-sidebar" "nav-bar main-view right-sidebar" "now-playing-bar main-view right-sidebar";
 }
 
-.Root__now-playing-bar,
-.main-nowPlayingBar-container,
-.main-nowPlayingBar-nowPlayingBar {
+.Root__now-playing-bar, .main-nowPlayingBar-container, .main-nowPlayingBar-nowPlayingBar {
     width: calc(var(--nav-bar-width) + 9px);
     min-width: 0;
     height: 100%;
@@ -33,9 +23,7 @@ ul#spicetify-sticky-list {
     border-top: none;
 }
 
-.main-nowPlayingBar-center,
-.main-nowPlayingBar-nowPlayingBar,
-footer.main-nowPlayingBar-container {
+.main-nowPlayingBar-center, .main-nowPlayingBar-nowPlayingBar, footer.main-nowPlayingBar-container {
     width: 100%;
 }
 
@@ -49,64 +37,32 @@ footer.main-nowPlayingBar-container {
     justify-content: center;
 }
 
-#volume-percentage,
-.volume-percent,
-.GlueDropTarget.GlueDropTarget--albums.GlueDropTarget--tracks.GlueDropTarget--local-tracks.GlueDropTarget--episodes.personal-library
-    *
-    > span,
-.GlueDropTarget.GlueDropTarget--tracks.personal-library * > span,
-.fsd-button,
-.main-actionBarBackground-background,
-.main-coverSlotExpanded-container,
-.main-entityHeader-backgroundColor,
-.main-home-homeHeader,
-.main-rootlist-rootlistDividerGradient,
-.volume-bar:hover ~ .control-button,
-button.main-coverSlotCollapsed-expandButton,
-div.main-topBar-sectionWrapper.main-topBar-entryPoints > a > span {
+#volume-percentage, .volume-percent, .GlueDropTarget.GlueDropTarget--albums.GlueDropTarget--tracks.GlueDropTarget--local-tracks.GlueDropTarget--episodes.personal-library * > span, .GlueDropTarget.GlueDropTarget--tracks.personal-library * > span, .fsd-button, .main-actionBarBackground-background, .main-entityHeader-backgroundColor, .main-home-homeHeader, .main-rootlist-rootlistDividerGradient, .volume-bar:hover ~ .control-button, div.main-topBar-sectionWrapper.main-topBar-entryPoints > a > span {
     display: none;
 }
 
-.main-nowPlayingBar-left * {
-    display: flex;
-    flex-direction: column;
-    transform: none;
-    width: 100%;
-}
 [dir=ltr] .main-nowPlayingWidget-coverExpanded {
     transform: none;
 }
 
-.main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer,
-.main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer *:not(.main-coverSlotCollapsed-expandButton, .main-coverSlotCollapsed-expandButton *) {
+.main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer, .main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer *:not(.main-coverSlotCollapsed-expandButton, .main-coverSlotCollapsed-expandButton *) {
     width: 180px !important;
     height: 180px !important;
     transform: none !important;
     border-radius: var(--border-radius);
 }
 
-.main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer
-    *
-    > .icon {
+.main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer * > .icon {
     position: initial !important;
 }
 
-.main-trackInfo-container > * * {
-    width: 100%;
-    text-align: center;
-    transform: none !important;
-    padding: 0;
-    margin: 0;
-}
-
-.main-nowPlayingWidget-nowPlaying {
+.main-nowPlayingWidget-nowPlaying:not(.main-nowPlayingWidget-coverExpanded) {
     width: 100%;
     display: grid;
-    grid-template: "Art Art" "Info Like";
-}
-
-.main-nowPlayingWidget-nowPlaying > * {
-    display: grid;
+    grid-template:
+        "Art Art"
+        "Info Like";
+    grid-auto-columns: calc(100% - 32px) 32px;
 }
 
 .main-coverSlotCollapsed-container.main-coverSlotCollapsed-navAltContainer {
@@ -115,32 +71,10 @@ div.main-topBar-sectionWrapper.main-topBar-entryPoints > a > span {
 
 .main-trackInfo-container {
     grid-area: Info;
-    justify-self: self-end;
     margin: 0;
-    transform: translate(-6px, 0) !important;
 }
 
-.main-trackInfo-artists {
-    display: flex;
-    flex-direction: row;
-}
-
-.main-trackInfo-artists > * {
-    margin-left: 3px;
-    text-align: left;
-}
-
-.main-trackInfo-artists * {
-    display: inline;
-}
-
-.main-trackInfo-name * {
-    margin-left: 1px;
-    text-align: left;
-}
-
-.main-rootlist-rootlist,
-ul#spicetify-sticky-list {
+.main-rootlist-rootlist, ul#spicetify-sticky-list {
     width: calc(100% - 2em);
     margin: var(--margin) var(--margin) 0;
     border-radius: var(--border-radius);
@@ -187,8 +121,7 @@ ul#spicetify-sticky-list {
     left: calc(50% - 40px);
 }
 
-.GlueDropTarget.GlueDropTarget--albums.GlueDropTarget--tracks.GlueDropTarget--local-tracks.GlueDropTarget--episodes.personal-library
-    * {
+.GlueDropTarget.GlueDropTarget--albums.GlueDropTarget--tracks.GlueDropTarget--local-tracks.GlueDropTarget--episodes.personal-library * {
     margin: 0;
     padding: 0;
 }
@@ -250,21 +183,7 @@ footer.main-nowPlayingBar-container {
     gap: 0;
 }
 
-.main-card-card,
-.main-card-imageContainer *,
-.main-entityHeader-imageContainer *,
-.main-gridContainer-gridContainer.main-shelf-shelfGrid,
-.main-heroCard-card.collection-collectionEntityHeroCard-likedSongs.collection-collectionEntityHeroCard-container,
-.main-navBar-navBar,
-.main-navBar-navBarLinkActive,
-.main-playButton-PlayButton > button > span,
-.playlist-playlist-playlistImageContainer *,
-a.lyrics-tabBar-headerItemLink.lyrics-tabBar-active,
-a.marketplace-tabBar-headerItemLink.marketplace-tabBar-active,
-a.queue-tabBar-headerItemLink.queue-tabBar-active,
-input.Type__TypeElement-sc-goli3j-0.hGXzYa.x-searchInput-searchInputInput,
-span.ChipInner__ChipInnerComponent-sc-1ly6j4j-0.dRqLpa.encore-inverted-light-set,
-span.ChipInner__ChipInnerComponent-sc-1ly6j4j-0.kbIsPl {
+.main-card-card, .main-card-imageContainer *, .main-entityHeader-imageContainer *, .main-gridContainer-gridContainer.main-shelf-shelfGrid, .main-heroCard-card.collection-collectionEntityHeroCard-likedSongs.collection-collectionEntityHeroCard-container, .main-navBar-navBar, .main-navBar-navBarLinkActive, .main-playButton-PlayButton > button > span, .playlist-playlist-playlistImageContainer *, a.lyrics-tabBar-headerItemLink.lyrics-tabBar-active, a.marketplace-tabBar-headerItemLink.marketplace-tabBar-active, a.queue-tabBar-headerItemLink.queue-tabBar-active, input.Type__TypeElement-sc-goli3j-0.hGXzYa.x-searchInput-searchInputInput, span.ChipInner__ChipInnerComponent-sc-1ly6j4j-0.dRqLpa.encore-inverted-light-set, span.ChipInner__ChipInnerComponent-sc-1ly6j4j-0.kbIsPl {
     border-radius: var(--border-radius);
 }
 
@@ -278,14 +197,12 @@ span.ChipInner__ChipInnerComponent-sc-1ly6j4j-0.kbIsPl {
 
 .playlist-playlist-playlistContent {
     width: calc(100% - 2em);
-    margin-inline: var(--margin);
-    border-radius: var(--border-radius);
+    margin-inline: var(--margin); border-radius: var(--border-radius);
 }
 
 .artist-artistOverview-artistOverviewContent {
     width: calc(100% - 2em);
-    margin-inline: var(--margin);
-    background: var(--spice-secondary);
+    margin-inline: var(--margin); background: var(--spice-secondary);
     border-radius: var(--border-radius);
 }
 
@@ -294,8 +211,7 @@ span.ChipInner__ChipInnerComponent-sc-1ly6j4j-0.kbIsPl {
     backdrop-filter: blur(6px);
 }
 
-.main-trackList-rowImageWithPlay > img,
-.main-trackList-rowSectionStart > img {
+.main-trackList-rowImageWithPlay > img, .main-trackList-rowSectionStart > img {
     border-radius: calc(var(--border-radius) / 2);
 }
 
@@ -313,8 +229,7 @@ span.ChipInner__ChipInnerComponent-sc-1ly6j4j-0.kbIsPl {
     background: var(--spice-secondary);
 }
 
-.main-cardImage-imageWrapper.main-card-hero,
-.main-cardImage-imageWrapper.main-card-hero * {
+.main-cardImage-imageWrapper.main-card-hero, .main-cardImage-imageWrapper.main-card-hero * {
     border-radius: var(--border-radius);
     background: 0 0;
 }
@@ -327,11 +242,7 @@ span.ChipInner__ChipInnerComponent-sc-1ly6j4j-0.kbIsPl {
     height: 100vh;
 }
 
-.lyrics-lyricsContainer-LyricsContainer.blur-enabled,
-.main-rootlist-wrapper,
-.main-topBar-sectionWrapper.main-topBar-entryPoints,
-.os-resize-observer-host.observed,
-main {
+.lyrics-lyricsContainer-LyricsContainer.blur-enabled, .main-rootlist-wrapper, .main-topBar-sectionWrapper.main-topBar-entryPoints, .os-resize-observer-host.observed, main {
     height: 100%;
 }
 
@@ -339,37 +250,21 @@ main {
     height: 103%;
 }
 
-button.main-repeatButton-button.main-repeatButton-active,
-button.main-shuffleButton-button.main-shuffleButton-active {
+button.main-repeatButton-button.main-repeatButton-active, button.main-shuffleButton-button.main-shuffleButton-active {
     color: var(--spice-button);
     filter: drop-shadow(0 0 3px var(--spice-button));
 }
 
-.main-repeatButton-button.main-repeatButton-active:not([disabled]):focus:not(
-        :focus-visible,
-        :hover
-    ),
-.main-shuffleButton-button.main-shuffleButton-active:not([disabled]):focus:not(
-        :focus-visible,
-        :hover
-    ),
-.main-trackList-rowHeartButton,
-.main-trackList-trackListRow.main-trackList-active .main-trackList-rowMarker,
-.main-trackList-trackListRow.main-trackList-active .main-trackList-rowTitle,
-main-genericButton-buttonActive,
-main-genericButton-buttonActive:after {
+.main-repeatButton-button.main-repeatButton-active:not([disabled]):focus:not( :focus-visible, :hover ), .main-shuffleButton-button.main-shuffleButton-active:not([disabled]):focus:not( :focus-visible, :hover ), .main-trackList-rowHeartButton, .main-trackList-trackListRow.main-trackList-active .main-trackList-rowMarker, .main-trackList-trackListRow.main-trackList-active .main-trackList-rowTitle, main-genericButton-buttonActive, main-genericButton-buttonActive:after {
     color: var(--spice-button);
 }
 
-.control-button--active,
-.main-genericButton-buttonActive {
+.control-button--active, .main-genericButton-buttonActive {
     color: var(--spice-button) !important;
     filter: drop-shadow(0 0 3px var(--spice-button));
 }
 
-.main-genericButton-button.main-genericButton-buttonActive:after,
-.main-playButton-PlayButton *,
-.main-playButton-PlayButton :hover {
+.main-genericButton-button.main-genericButton-buttonActive:after, .main-playButton-PlayButton *, .main-playButton-PlayButton :hover {
     background: var(--spice-button);
 }
 
@@ -388,8 +283,7 @@ button.main-playPauseButton-button {
     border-radius: var(--border-radius);
 }
 
-.main-navBar-navBarLinkActive,
-.main-playButton-PlayButton > button:hover > span {
+.main-navBar-navBarLinkActive, .main-playButton-PlayButton > button:hover > span {
     background-color: var(--spice-button) !important;
 }
 
@@ -402,19 +296,18 @@ button.main-playPauseButton-button {
     background: var(--spice-text);
 }
 
-.main-createPlaylistButton-createPlaylistIcon svg,
-.main-likedSongsButton-likedSongsIcon svg {
+.main-createPlaylistButton-createPlaylistIcon svg, .main-likedSongsButton-likedSongsIcon svg {
     fill: var(--spice-secondary);
 }
+
 .main-nowPlayingBar-container > div:not(.main-nowPlayingBar-nowPlayingBar) {
     width: auto;
     position: absolute;
     right: 1em;
     bottom: 1em;
 }
-.main-nowPlayingBar-container
-    > div:not(.main-nowPlayingBar-nowPlayingBar)
-    > div {
+
+.main-nowPlayingBar-container > div:not(.main-nowPlayingBar-nowPlayingBar) > div {
     border-radius: var(--border-radius);
     font-size: 12px;
     background: var(--spice-button);
@@ -432,10 +325,7 @@ button.main-playPauseButton-button {
     fill: var(--spice-button) !important;
 }
 
-.main-repeatButton-button.main-repeatButton-active:not([disabled]):focus,
-.main-repeatButton-button.main-repeatButton-active:not([disabled]):hover,
-.main-shuffleButton-button.main-shuffleButton-active:not([disabled]):focus,
-.main-shuffleButton-button.main-shuffleButton-active:not([disabled]):hover {
+.main-repeatButton-button.main-repeatButton-active:not([disabled]):focus, .main-repeatButton-button.main-repeatButton-active:not([disabled]):hover, .main-shuffleButton-button.main-shuffleButton-active:not([disabled]):focus, .main-shuffleButton-button.main-shuffleButton-active:not([disabled]):hover {
     color: var(--spice-button);
     transform: scale(1.05);
     filter: drop-shadow(0 0 3px var(--spice-button));
@@ -469,66 +359,11 @@ button.main-playPauseButton-button {
 ::-webkit-scrollbar:horizontal {
     display: none;
 }
-/*
-@media screen and (max-height: 712px) {
-  .main-nowPlayingBar-container {
-      transition: 0.5s;
-  }
 
-  .main-nowPlayingBar-container:not(:hover) * > .main-addButton-button, .main-nowPlayingBar-container:not(:hover) * > .main-nowPlayingBar-right, .main-nowPlayingBar-container:not(:hover) * > .main-playbackBarRemainingTime-container, .main-nowPlayingBar-container:not(:hover) * > .main-trackInfo-container, .main-nowPlayingBar-container:not(:hover) * > .playback-bar__progress-time-elapsed, .main-nowPlayingBar-container:not(:hover) * > .player-controls__buttons.player-controls__buttons--new-icons {
-      display: none;
-  }
-
-  .main-nowPlayingBar-container:not(:hover) * > .main-nowPlayingBar-center.main-nowPlayingBar-center {
-      margin-bottom: 0.5em;
-      z-index: 0;
-      position: relative;
-      bottom: 2.5em;
-      left: 2px;
-  }
-
-  .main-nowPlayingBar-container:not(:hover) * > .playback-bar * {
-      height: 3em;
-      width: 180px;
-      border-radius: var(--border-radius);
-  }
-
-  .main-nowPlayingBar-nowPlayingBar:not(:hover) {
-      height: 218px;
-  }
-
-  .main-nowPlayingBar-container:not(:hover) * > .main-coverSlotCollapsed-container {
-      z-index: 2;
-  }
-
-  .main-coverSlotCollapsed-container, .main-coverSlotCollapsed-container * {
-      background: 0 0;
-  }
-
-  .main-nowPlayingBar-container:not(:hover) * > .x-progressBar-fillColor {
-      background: var(--spice-button);
-      border-radius: 0;
-  }
-
-  .main-nowPlayingBar-container:not(:hover) * > .main-connectBar-connectBar {
-      display: none !important;
-  }
-}
-
-@media screen and (max-height: 650px) {
-  .main-rootlist-rootlist {
-      display: none;
-  }
-}
-*/
 .main-trackInfo-genres.ellipsis-one-line.main-type-finale > :nth-child(2n) {
     padding-right: 4px;
 }
 
-.main-trackInfo-genres.ellipsis-one-line.main-type-finale {
-    flex-direction: row;
-    padding-left: 7px;
-}
 
 @media screen and (max-width: 1060px) {
     .Root__right-sidebar {
@@ -554,11 +389,7 @@ button.main-playPauseButton-button {
     border-radius: var(--border-radius);
 }
 
-div.Root__top-container
-    > div.main-topBar-topBarContainer
-    > div.main-topBar-sectionWrapper.main-topBar-left
-    > div
-    > button {
+div.Root__top-container > div.main-topBar-topBarContainer > div.main-topBar-sectionWrapper.main-topBar-left > div > button {
     background: var(--spice-main) !important;
 }
 
@@ -571,9 +402,7 @@ div.main-topBar-sectionWrapper.main-topBar-entryPoints > a {
     align-items: center;
 }
 
-.main-navBar-navBarLink svg > path,
-div.main-topBar-sectionWrapper.main-topBar-entryPoints > a > svg > path,
-span.x-searchInput-searchInputSearchIcon > svg > path {
+.main-navBar-navBarLink svg > path, div.main-topBar-sectionWrapper.main-topBar-entryPoints > a > svg > path, span.x-searchInput-searchInputSearchIcon > svg > path {
     fill: var(--spice-subtext);
 }
 
@@ -586,8 +415,7 @@ div.main-topBar-sectionWrapper.main-topBar-entryPoints > a.active {
     align-items: center;
 }
 
-.main-navBar-navBarLinkActive svg > path,
-div.main-topBar-sectionWrapper.main-topBar-entryPoints > a.active > svg > path {
+.main-navBar-navBarLinkActive svg > path, div.main-topBar-sectionWrapper.main-topBar-entryPoints > a.active > svg > path {
     fill: var(--spice-text);
 }
 
@@ -596,8 +424,7 @@ div.main-topBar-sectionWrapper.main-topBar-entryPoints > a.active > svg > path {
     color: var(--spice-text) !important;
 }
 
-button.main-userWidget-box,
-button.main-userWidget-box * {
+button.main-userWidget-box, button.main-userWidget-box * {
     height: 40px !important;
     background: 0 0 !important;
     width: 40px !important;
@@ -611,8 +438,7 @@ figure.main-avatar-avatar > div > img:not(.main-entityHeader-metaDataText *) {
 }
 
 .main-topBar-sectionWrapper.main-topBar-right {
-    padding-inline-end: var(--pfppadding) !important;
-}
+    padding-inline-end: var(--pfppadding) !important; }
 
 :root {
     --display: none;
@@ -645,13 +471,7 @@ figure.main-avatar-avatar > div > img:not(.main-entityHeader-metaDataText *) {
     width: 134px;
     top: 1px;
     right: 1px;
-    background: linear-gradient(
-        45deg,
-        var(--spice-secondary) 0,
-        var(--spice-secondary) 9%,
-        var(--spice-main) 9%,
-        var(--spice-main) 100%
-    );
+    background: linear-gradient( 45deg, var(--spice-secondary) 0, var(--spice-secondary) 9%, var(--spice-main) 9%, var(--spice-main) 100% );
     filter: brightness(220%);
     display: var(--controls-display);
 }
@@ -660,10 +480,12 @@ button[aria-label="Friend Activity"] {
     display: none !important;
 }
 
-.Root__top-bar,
-.Root__top-bar * {
+.Root__top-bar, .Root__top-bar * {
     border-bottom-left-radius: var(--border-radius);
     border-bottom-right-radius: var(--border-radius);
+}
+.main-playButton-PlayButton * {
+    border-radius: var(--border-radius);
 }
 
 .Root__top-bar {
@@ -678,8 +500,7 @@ button[aria-label="Friend Activity"] {
     background: var(--spice-button) !important;
 }
 
-.encore-dark-theme,
-.encore-dark-theme .encore-base-set {
+.encore-dark-theme, .encore-dark-theme .encore-base-set {
     --text-subdued: var(--spice-subtext) !important;
 }
 
@@ -687,9 +508,6 @@ button[aria-label="Friend Activity"] {
     padding-top: 0;
 }
 
-a {
-    color: var(--spice-text);
-}
 
 .main-cardHeader-text {
     color: var(--spice-text);
@@ -702,55 +520,81 @@ a {
 .main-createPlaylistButton-createPlaylistIcon {
     background: var(--spice-text);
 }
+
 button.queue-tabBar-moreButton.queue-tabBar-moreButtonActive {
     border-radius: var(--border-radius);
 }
 
-.Dropdown-control,
-.Dropdown-control path {
+.Dropdown-control, .Dropdown-control path {
     border-radius: var(--border-radius);
     background-color: var(--spice-card);
     color: var(--spice-text);
     fill: var(--spice-text);
 }
+
 .main-dropDown-dropDown {
     color: var(--spice-text);
 }
+
 button.main-playPauseButton-button path {
     filter: invert(1);
     fill: var(--spice-text);
 }
 
-.main-playPauseButton-button,
-.control-button:not(
-        .control-button--active,
-        .main-genericButton-buttonActive,
-        .control-button-heart
-    )
-    path,
-button.main-skipBackButton-button path,
-button.main-skipForwardButton-button path {
+.main-playPauseButton-button, .control-button:not( .control-button--active, .main-genericButton-buttonActive, .control-button-heart ) path, button.main-skipBackButton-button path, button.main-skipForwardButton-button path {
     fill: var(--spice-text);
     opacity: 75%;
 }
-:root,
-.encore-dark-theme,
-.encore-dark-theme .encore-base-set {
+
+:root, .encore-dark-theme, .encore-dark-theme .encore-base-set {
     --spice-sidebar: var(--spice-secondary);
     --spice-tab-active: var(--spice-card);
     --background-highlight: var(--spice-card) !important;
-    --spice-button-active: var(--spice-button);
+    --spice-button-active: rgb(var(--spice-rgb-button),0.8);;
 }
+
 section.contentSpacing:has(.collection-collection-header) {
     margin-top: 5em;
 }
+
 .main-trackList-trackListHeader.main-trackList-trackListHeaderStuck {
     background: var(--spice-secondary);
 }
+
 .main-actionBar-ActionBarRow path:not(.main-playButton-PlayButton path) {
     fill: var(--spice-subtext);
 }
+
 .collection-searchBar-searchBar * {
-  color: var(--spice-subtext);
-  fill: var(--spice-subtext);
+    color: var(--spice-subtext);
+    fill: var(--spice-subtext);
+}
+
+.main-coverSlotExpanded-container {
+    border-radius: var(--border-radius);
+    display: block !important;
+    height: auto;
+}
+.main-coverSlotExpanded-container * {
+    border-radius: var(--border-radius);
+    border: transparent !important;
+}
+.main-nowPlayingWidget-coverExpanded > .main-coverSlotCollapsed-container {
+    display: none;
+}
+.main-nowPlayingWidget-coverExpanded {
+    width: 100%;
+    display: grid;
+    grid-template:
+        "Info Like";
+    grid-auto-columns: calc(100% - 32px) 32px;
+}
+.main-navBar-navBar > div:has(.main-coverSlotExpanded-container) {
+    width: 207px;
+    margin: var(--margin);
+    margin-bottom: 0;
+    margin-right: 0;
+}
+.main-entityHeader-imagePlaceholder > div {
+    background: var(--spice-card);
 }
