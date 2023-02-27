@@ -38,6 +38,10 @@ Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/LucyUwi/Po
 | ![](Previews/GruvboxDark.png) | ![](Previews/GruvboxLight.png) |
 |        **Dirty Coffee**       |         **Milk Coffee**        |
 | ![](Previews/DirtyCoffee.png) | ![](Previews/MilkCoffee.png)   |
+|     **Catppuccin Mocha**      |    **Catppuccin Macchiato**    |
+|    ![](Previews/Mocha.png)    |  ![](Previews/Macchiato.png)   |
+|     **Catppuccin Frappé**     |      **Catppuccin Latte**      |
+|    ![](Previews/Frappé.png)   |    ![](Previews/Latte.png)     |
 
 
 ## Todo
