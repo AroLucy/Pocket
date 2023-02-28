@@ -233,14 +233,14 @@ async function InitPocket() {
                 }
                 .main-coverSlotExpanded-container {
                     width: calc(100% - calc(var(--margin) *2));
-                    border-radius: 1em;
+                    border-radius: var(--border-radius);
                     margin-inline: var(--margin);
                     margin-block-start: var(--margin);
                     display: block !important;
                 }
                 
                 .main-coverSlotExpanded-container * {
-                    border-radius: 1em;
+                    border-radius: var(--border-radius);
                 }
                 
                 .main-trackInfo-container {
