@@ -258,6 +258,9 @@ async function InitPocket() {
                     width: auto;
                     margin: 0;
                 }
+                .main-view-container {
+                    margin: var(--margin) var(--margin) 0 0;
+                }
             `;
             document.body.appendChild(Style);
         }
