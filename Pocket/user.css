@@ -431,7 +431,7 @@ button.main-userWidget-box, button.main-userWidget-box * {
     transform: none;
 }
 
-figure.main-avatar-avatar > div > img:not(.main-entityHeader-metaDataText *) {
+.main-topBar-sectionWrapper figure.main-avatar-avatar > div > img {
     height: 40px;
     width: 40px;
     border-radius: var(--border-radius);
