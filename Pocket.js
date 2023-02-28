@@ -233,14 +233,14 @@ async function InitPocket() {
                 }
                 .main-coverSlotExpanded-container {
                     width: calc(100% - calc(var(--margin) *2));
-                    border-radius: var(--border-radius);
+                    border-radius: 1em;
                     margin-inline: var(--margin);
                     margin-block-start: var(--margin);
                     display: block !important;
                 }
                 
                 .main-coverSlotExpanded-container * {
-                    border-radius: var(--border-radius);
+                    border-radius: 1em;
                 }
                 
                 .main-trackInfo-container {
@@ -257,9 +257,6 @@ async function InitPocket() {
                 .main-navBar-navBar > div:has(.main-coverSlotExpanded-container) {
                     width: auto;
                     margin: 0;
-                }
-                .main-view-container {
-                    margin: var(--margin) var(--margin) 0 0;
                 }
             `;
             document.body.appendChild(Style);
@@ -718,16 +715,32 @@ async function InitPocket() {
         static ApplyFont() {
             if (Config.CustomFontEnabled) {
                 let FontName = Config.FontName;
-                if (!FontName) return
+                if (!FontName) return;
+                FontName = FontName.split('"')[0];
+                FontName = FontName.split('\'')[0];
+                FontName = FontName.split('}')[0];
+                FontName = FontName.split('{')[0];
+                FontName = FontName.split(';')[0];
                 let FontURL = Config.FontURL
-                if (!FontURL) return 
+                if (!FontURL) return;
+                FontURL = FontURL.split('"')[0];
+                FontURL = FontURL.split('\'')[0];
+                FontURL = FontURL.split('}')[0];
+                FontURL = FontURL.split('{')[0];
+                FontURL = FontURL.split(';')[0];
+                Config.FontName = FontName
+                Config.FontURL = FontURL
+                try {
+                    document.getElementById("FontName").value = FontName
+                    document.getElementById("FontURL").value = FontURL
+                } catch {}
                 if (document.getElementById("FontsStyleSheet")) document.getElementById("FontsStyleSheet").remove()
 
                 let FontStyleSheet = document.createElement("style")
                 FontStyleSheet.setAttribute('id','FontsStyleSheet')
                 !FontURL.includes("fonts.googleapis.com") 
-                    ? FontStyleSheet.innerHTML = `@font-face {font-family: ` + FontName + `; src: url('` + FontURL + `');} * {font-family: "` + FontName + `" !important; }` 
-                    : FontStyleSheet.innerHTML = `@import url('` + FontURL + `'); * {font-family: "` + FontName + `" !important; }`
+                    ? FontStyleSheet.innerHTML = `@font-face {font-family: ` + FontName + `; src: url('` + FontURL + `');} * {font-family: "` + FontName + `",CircularSp,CircularSp-Arab,CircularSp-Hebr,CircularSp-Cyrl,CircularSp-Grek,CircularSp-Deva,var(--fallback-fonts,sans-serif),sans-serif !important; }` 
+                    : FontStyleSheet.innerHTML = `@import url('` + FontURL + `'); * {font-family: "` + FontName + `",CircularSp,CircularSp-Arab,CircularSp-Hebr,CircularSp-Cyrl,CircularSp-Grek,CircularSp-Deva,var(--fallback-fonts,sans-serif),sans-serif !important; }`
                 document.body.appendChild(FontStyleSheet)
             }
         }
